@@ -1,0 +1,67 @@
+@import 'params.styl'
+
+.error
+  position fixed
+  width 100%
+  height 100%
+  top 0
+  left 0
+  overflow auto
+  test-align center
+
+  canvas
+    position absolute
+    top 0
+    left 0
+    z-index -1
+
+  #Layer_1
+    position relative
+    width space*40
+    padding space*2 0 0 0
+    margin-left "calc(50% - (%s * 20))" % space
+    // animation changeColor 20s infinite
+    transition all .5s
+    @media screen and (max-width: 768px)
+      width space*30
+      margin-left "calc(50% - (%s * 15))" % space
+
+.obj-3
+  animation changeColor 30s infinite
+
+.error-text
+  width 100%
+  text-align center
+
+  .error-title
+    font-size space*3
+
+  .error-subtitle
+    font-size space*2
+
+  .error-subtext
+    font-size space*1.5
+
+@keyframes changeColor
+  0%
+    fill black
+  10%
+    fill dark-gray
+  20%
+    fill pastel-blue
+  30%
+    fill #b19cd9 //pastel-purple
+  40%
+    fill pastel-red
+  50%
+    fill #ffb347 //pastel-orange
+  60%
+    fill #fdfd96 //pastel-yellow
+  70%
+    fill #77dd77 //pastel-green
+  80%
+    fill pastel-blue
+  90%
+    fill medium-gray
+  100%
+    fill black

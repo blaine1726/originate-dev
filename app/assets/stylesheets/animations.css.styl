@@ -1,0 +1,309 @@
+@import 'params.styl'
+
+light-gray = #d3d3d3
+medium-gray = #a6a6a6
+dark-gray = #737373
+black = #000000
+off-black = #0d0d0d
+
+html, body
+  width 100%
+  height 100%
+  padding 0
+  margin 0
+  font-family originate-circular-medium
+
+/* Background Animation */
+
+pathNumber = 18
+firstColor = #0057B8;
+listColors = #F11E4A, #F8A527, #266D7F, #82A, $firstColor
+delayCoeff = 0.1s
+
+#canvas
+  width 100%
+  height 100%
+
+#animating-tile
+  width 100px
+  height 100px
+  position absolute
+  animation pulse 4s infinite
+
+.animate
+  opacity 0
+
+.visible
+  animation visible .8s ease forwards
+
+.invisible
+  animation invisible .4s ease forwards
+
+.slide-up
+  opacity 0
+  animation: slide-up .8s ease forwards
+
+//this makes them appear staggered
+.slide-up:nth-child(odd)
+  animation-duration .5s
+
+.animation-frame
+  width wrap-content
+  height wrap-content
+
+for num in (1..12)
+  .visible:nth-child({num})
+    animation-delay: .1s * num
+
+.animate.long-animation
+  animation-duration: 1.5s
+
+@keyframes visible
+  from
+    transform: scale(1.1);
+    opacity 0
+    transform: translateY(30px);
+  to
+    transform: scale(1.0);
+    opacity 1
+    transform: translateY(0);
+
+@keyframes invisible
+  from
+    transform scale(1.0)
+    opacity 1
+    transform translateY(0)
+  to
+    transform scale(1.4)
+    opacity 0
+    transform translateY(30px)
+
+@keyframes slide-up
+  from
+    transform: translateY(150px);
+  to
+    opacity 1
+    transform: translateY(0);
+
+@keyframes pulse
+  0%, 100%
+    background-color #001F3F
+    top 0px
+  50%
+    background-color #FF4136
+    top 100px
+
+.full-screen
+  min-width 100%
+  min-height 100%
+  top 0
+  left 0
+
+/*------------ HOME SCREEN ------------*/
+
+svg
+  padding space*15
+
+@keyframes fadeIn
+  from
+    opacity 0
+  to
+    opacity 1
+
+//O
+@keyframes fade-1
+  from
+    // transform: translate(-4px, -4px) scale(1.5)
+    opacity 0
+  to
+    // transform: translate(0, 0) scale(1.0)
+    opacity 1
+
+.fade-in
+  opacity 0
+  &.one //This is the r
+    animation fade-1 1.5s ease forwards
+    animation-delay 1s
+  &.two //This is the i (after the r)
+    animation fade-1 1.5s ease forwards
+    animation-delay .5s
+  &.three //This is the second i
+    animation fade-1 1.5s ease forwards
+    animation-delay 1.5s
+  &.four //This is the n
+    animation fade-1 1.5s ease forwards
+    animation-delay .8s
+  &.five //This is the a
+    animation fade-1 1.5s ease forwards
+    animation-delay 1.8s
+  &.six //This is the g (for some strange reason)
+    animation fade-1 1.5s ease forwards
+    animation-delay 1.2s
+  &.seven, &.eight //This is the last e and the R
+    animation fade-1 1.5s ease forwards
+    animation-delay 2.1s
+  &.nine //The beginning O
+    animation fade-1 1.5s ease forwards
+    animation-delay .6s
+  &.ten //This is the t
+    animation fade-1 1.5s ease forwards
+    animation-delay 1s
+
+  // left 50%
+  // top 50%
+  // margin-left -224.14px
+  // margin-top -50px
+
+/* Begin SVG Animations */
+//
+// .svg
+//   width 100
+//   height 100
+
+/* End SVG Animations */
+
+.og-logo-bg
+  width 100px
+  height 100px
+  position fixed
+  z-index 4
+  background-color white
+  opacity 1
+
+.background
+  background-color black
+  width 100%
+  height 100%
+  position fixed
+  z-index -1
+
+.svg
+  display inline-block
+  height 200px
+  width 200px
+  line-height 200px
+  text-align center
+  background #0057B8
+  border-radius 50%
+
+/* End Background Animation */
+
+.proj-animation-container
+  width 100%
+  height 100%
+  position fixed
+
+.phone-bg
+  position fixed
+  max-width 300px
+  max-height 608px
+  top calc(50% - 300px)
+  left calc(50% - 150px)
+
+.phone-inner-bg
+  width 100%
+  height 100%
+
+.phone-screen
+  position fixed
+  height 462px
+  width 260px
+  background-color black
+  left calc(50% - 130px)
+  top calc(50% - 226px)
+  overflow hidden
+
+.phone-img
+  height 100%
+
+.draggable
+  width 150px
+  height 150px
+  background-color white
+
+.orbit
+  position absolute
+  overflow none
+  padding 0
+  -webkit-transition width, height 0.15s ease-in-out
+  -o-transition width, height 0.15s ease-in-out
+  transition width, height 0.15s ease-in-out
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+
+.drag-img
+  max-width 100%
+  max-height 100%
+  height 100%
+
+#phone-img-1
+  height 100%
+  width 100%
+
+.down
+  -webkit-transition margin-top 0.3s ease-in-out
+  -o-transition margin-top 0.3s ease-in-out
+  transition margin-top 0.3s ease-in-out
+  margin-top 462px
+
+.up
+  -webkit-transition margin-top 0.3s ease-in-out
+  -o-transition margin-top 0.3s ease-in-out
+  transition margin-top 0.3s ease-in-out
+  margin-top 0
+
+.bg-square
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+
+@-webkit-keyframes myOrbit {
+    from { -webkit-transform: rotate(0deg) translateX(10px) rotate(0deg); }
+    to   { -webkit-transform: rotate(360deg) translateX(10px) rotate(-360deg); }
+}
+
+@-moz-keyframes myOrbit {
+    from { -moz-transform: rotate(0deg) translateX(10px) rotate(0deg); }
+    to   { -moz-transform: rotate(360deg) translateX(10px) rotate(-360deg); }
+}
+
+@-o-keyframes myOrbit {
+    from { -o-transform: rotate(0deg) translateX(10px) rotate(0deg); }
+    to   { -o-transform: rotate(360deg) translateX(10px) rotate(-360deg); }
+}
+
+@keyframes myOrbit {
+    from { transform: rotate(0deg) translateX(10px) rotate(0deg); }
+    to   { transform: rotate(360deg) translateX(10px) rotate(-360deg); }
+}
+
+#orbit-0
+  -webkit-animation myOrbit 5s linear infinite
+  -moz-animation myOrbit 5s linear infinite
+  -o-animation myOrbit 5s linear infinite
+  animation myOrbit 5s linear infinite
+
+#orbit-1
+  -webkit-animation myOrbit 4s linear infinite
+  -moz-animation myOrbit 4s linear infinite
+  -o-animation myOrbit 4s linear infinite
+  animation myOrbit 4s linear infinite
+
+#orbit-2
+  -webkit-animation myOrbit 3.5s linear infinite
+  -moz-animation myOrbit 3.5s linear infinite
+  -o-animation myOrbit 3.5s linear infinite
+  animation myOrbit 3.5s linear infinite
+
+#orbit-3
+  -webkit-animation myOrbit 4.5s linear infinite
+  -moz-animation myOrbit 4.5s linear infinite
+  -o-animation myOrbit 4.5s linear infinite
+  animation myOrbit 4.5s linear infinite
+
+#orbit-4
+  -webkit-animation myOrbit 5.5s linear infinite
+  -moz-animation myOrbit 5.5s linear infinite
+  -o-animation myOrbit 5.5s linear infinite
+  animation myOrbit 5.5s linear infinite

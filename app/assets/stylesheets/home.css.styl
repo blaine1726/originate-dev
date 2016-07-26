@@ -1,0 +1,192 @@
+@import 'params.styl'
+
+pastel-gray = #cfcfc4
+pastel-blue = #aec6cf
+
+div
+  display block
+
+body
+  margin 0
+  padding 0
+
+// .home-page-1, .home-page-2, .home-page-3
+//   position static
+//   width 100vw
+//   height 100vh
+//   display block
+//   overflow auto
+
+.group1
+  z-index 5
+
+.group2
+  z-index 2
+
+.group3
+  z-index 3
+
+.group4
+  z-index 2
+
+.group5
+  z-index 1
+
+.color1
+  background-color black
+
+.color2
+  background-color medium-gray
+
+.color3
+  background-color light-gray
+
+#home2
+  background-color #808080
+
+#home3
+  background-color light-gray
+
+.home-page-1
+  margin-bottom - space*.3
+
+// .landing
+//   width 100%
+//   height 100%
+//   position absolute
+//   background-color #000
+//   margin 0px
+//   overflow hidden
+
+.home-text
+  position absolute
+  color white
+  top 50%
+  left 50%
+
+.logo-fade
+  margin-left -419.33px
+  margin-top -280.015px
+  fill white
+
+.explore
+  position inherit
+  top "calc(100% - (%s * 5))" % space
+  left 50%
+
+.home-arrow
+  height space*4
+  width space*4
+  position absolute
+  margin-left - space*2
+
+.home-iphone
+  margin-right space*8
+  margin-top - space*5
+  @media screen and (max-width: 768px)
+    margin-top 0
+
+
+/*------------ Parallax Effect ------------*/
+
+.parallax
+  overflow-x hidden
+  overflow-y auto
+  height 100vh
+  perspective 1px
+  scroll-behavior smooth
+  background-color black
+
+.parallax__group
+  position relative
+  height 100vh
+  transform-style: preserve-3d;
+
+.group-large
+  height 135vh
+
+.parallax__layer
+  position absolute
+  top 0
+  left 0
+  right 0
+  bottom 0
+  // min-height 400px
+  // background-position top center
+  // background-repeat no-repeat
+
+// .parallax-bg
+//   height 50%
+
+.parallax__layer--wrapper
+  bottom 0
+  left 0
+  overflow hidden
+  position fixed
+  right 0
+  top 0
+
+.text-shadow
+  text-shadow: 2px 2px medium-gray
+  color white
+
+.parallax__layer--base
+  transform translateZ(0)
+  z-index 4
+
+.parallax__layer--back
+  transform translateZ(-1px) scale(2)
+  z-index 3
+  margin-left -5px
+
+.parallax__layer--deep
+  transfrom translateZ(-2px) scale(3)
+  z-index 2
+
+.inner-home
+  position absolute
+  left 50%
+  top 50%
+  color white
+  font-size space*2
+  text-align center
+  transform translate(-50%, -50%)
+  -webkit-transform translate(-50%, -50%)
+  .left
+    left 0
+    padding-left space*2
+
+.inner-home-base
+  position absolute
+  top 50%
+  width 100%
+  font-size space*2
+  padding-left space*5
+  padding-right space*5
+
+.home-base-inner
+  position relative
+  float left
+  text-align center
+  box-sizing border-box
+
+.parallax-img
+  filter blur(2px)
+  transition all .5s ease-in-out
+  height 100%
+
+.home-explore
+  padding-top space*2
+  position fixed
+  color white !important
+  text-align center
+  font-size space*1.8
+  z-index 100
+  top 60%
+  width 100%
+  line-height 100%
+
+.explore-link
+  position relative
+  color white
+  z-index 100

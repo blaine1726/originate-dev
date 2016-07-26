@@ -1,0 +1,343 @@
+@import 'params.styl'
+
+/*-------- Generic Tile Content --------*/
+
+.left-image
+  position relative
+  float left
+  height space*15
+  width space*15
+  max-height 100%
+  @media screen and (max-width: 768px)
+    width 0
+    height 0
+
+.contact-us
+  width 100%
+  height space*10
+  line-height space*10
+  border 2px solid medium-gray
+  text-align center
+  font-size space*1.5
+
+//Background Video Styles
+.fullscreen-bg
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    z-index -100
+
+.fullscreen-bg iframe
+  position absolute
+  top 0
+  left 0
+  right 0
+  bottom 0
+  width auto
+  height calc(100% + 20px)
+
+.fullscreen-bg__video
+    position: absolute;
+    top: 0;
+    left: 0;
+    width 100%
+    height 100%
+    z-index -1
+
+.bg-gif
+  position absolute
+  min-width 100%
+  min-height 100%
+  max-width 100%
+  z-index -1
+  display block
+  margin auto
+
+.blur
+  filter blur(3px)
+  -webkit-filter blur(3px)
+
+
+/*-------- End Generic Tile Content --------*/
+
+.tile-container
+  width 100%
+  position relative
+  padding-top space
+  z-index -1
+  position static
+  overflow hidden
+  transition all 0.25s ease-in-out
+
+.tile-primary-content, .tile-secondary-content
+  font-family originate-circular-book
+  font-weight lighter
+  position absolute
+  transition all 0.25s ease-in-out
+  width calc(100% - 1.2rem*4)
+  height calc(100% - 1.2rem*8)
+  font-size space
+  padding-top space*.8
+  &.inner-paragraph
+    width 100%
+    height 100%
+
+.tile-secondary-content
+  margin-left 100%
+
+.tile-sliding-content
+  overflow hidden
+
+.main-tile
+  padding-bottom 30%
+  height 0px
+  float left
+  text-align left
+  overflow hidden
+  box-sizing border-box
+  transition box-shadow, opacity 0.25s ease-in-out
+  cursor pointer
+  &:hover, &:focus, &:active
+    opacity .8 !important
+    box-shadow 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
+    .tile-primary-content
+      margin-left -150%
+      visibility hidden
+    .tile-secondary-content
+      margin-left 0
+      visibility visible
+
+.tile-title
+  font-weight bold
+  font-size space*1.5
+  z-index 4
+  text-shadow .5px .5px medium-gray
+
+/*-------- Tile Proportionalities --------*/
+
+.tile-half, .tile-third, .tile-two-thirds, .tile-fourth, .tile-three-fourths,
+.tile-full, .tile-tall
+  margin space-small
+  box-sizing border-box
+  height 0px
+  position relative
+  &:hover
+    opacity .8
+
+.tile-half
+  width "calc(50% - (%s * 2))" % tile-padding
+
+.tile-third
+  width "calc((100% / 3) - (%s * 2))" % tile-padding
+
+.tile-two-thirds
+  width "calc((200% / 3) - (%s * 2))" % tile-padding
+
+.tile-fourth
+  width "calc((100% / 4) - (%s * 2))" % tile-padding
+
+.tile-three-fourths
+  width "calc((300% / 4) - (%s * 2))" % tile-padding
+
+.tile-full, .tile-tall
+  width "calc(100% - (%s * 2))" % tile-padding
+
+.tile-home
+  width space*40
+  height space*50
+  margin space*2
+
+/*-------- End Tile Proportionalities --------*/
+
+/*-------- Column Data --------*/
+
+.column-half, .column-third, .column-two-thirds
+  position relative
+  float left
+  height wrap-content
+  margin-bottom space*2
+  .tile-half, .tile-third, .tile-two-thirds, .tile-fourth,
+  .tile-three-fourths, .tile-full
+    padding-bottom 45% //TODO this is a magic number... change later
+  .tile-tall
+    padding-bottom "calc(180% + (%s * 2))" % space-small
+  @media screen and (max-width: 768px)
+    margin 0
+    width 100%
+    float none
+    .tile-half, .tile-third, .tile-two-thirds, .tile-fourth,
+    .tile-three-fourths, .tile-full, .tile-tall
+      margin-top space-small
+      margin-bottom space-small
+
+// .column-two-thirds .tile-half
+//     height 20%
+
+.column-half
+  width 50%
+
+.column-third
+  width calc(100% / 3)
+
+.column-two-thirds
+  width calc(200% / 3)
+
+/*-------- End Column Data --------*/
+
+/*-------- Responsiveness --------*/
+
+/* ----------- Responsive laptop: 768px ----------- */
+
+@media only screen and (max-device-width: 768px),
+  only screen and (max-width: 768px)
+  .column-half, .column-third, .column-two-thirds
+    margin 0
+    height wrap-content
+    width 100%
+    float none
+  .tile-half, .tile-third, .tile-two-thirds, .tile-fourth, .tile-three-fourths,
+  .tile-full, .tile-tall
+    width 100%
+    margin space 0 space 0
+  .tile-full
+    min-height calc((9 / 21) * 100vw)
+  .tile-third, .tile-half
+    min-height calc((3 / 4) * 100vw)
+  .tile-three-fourths, .tile-two-thirds
+    min-height calc((9 / 16) * 100vw)
+  .tile-fourth
+    min-height 100vw
+  //Adds a margin to the top of the first element
+  .first-element
+    margin-top space*2
+  .tile-container
+    padding 0 space 0 space
+    margin 0
+    position static
+    background-color very-light-gray
+    box-sizing border-box
+  .home-container
+    margin 0
+    padding 0
+  .inner-paragraph
+    font-size space*2.1
+  .tile-title
+    font-size space*2.5
+  .small-header
+    height space*7
+    font-size space*1.7
+    .logo-small
+      height space*4.5
+      margin-right - space*10
+      padding-top space*.5
+    .contact-button
+      padding-top space*1.5
+      width space*10
+  .menu-container
+    max-height space*4
+    width 100% //The number of menu options times 10
+    position relative
+    overflow auto
+    margin-bottom space
+  .menu-inner
+    width space*84
+  .menu-option
+    position relative
+    float left
+    margin 0
+    padding 0
+    width space*14
+    height space*4
+    font-size space*1.4
+    font-weight lighter
+    line-height space*4
+    border none
+  .page-title
+    margin-top space*4
+  .people-tile
+    width 100%
+    padding space
+  .padded-container-small, .padded-container
+    padding-left space
+    padding-right space
+
+/*-------- Flip Container --------*/
+
+.flip-container
+  perspective 1000
+
+	.flip-container.selected .flipper
+		transform rotateY(180deg)
+
+.flip-container, .front, .back
+	height: 427px;
+
+.flipper
+	transition 0.6s
+	transform-style preserve-3d
+	position relative
+
+.front, .back
+	backface-visibility hidden
+	position absolute
+	top 0
+	left 0
+
+.front
+	background url(http://davidwalsh.name/demo/dwflip.jpg) 0 0 no-repeat
+	z-index 2
+
+.back
+	transform rotateY(180deg)
+	background #f8f8f8
+
+.front .name
+	font-size 2em
+	display inline-block
+	background rgba(33, 33, 33, 0.9)
+	color #f8f8f8
+	font-family Courier
+	padding 5px 10px
+	border-radius 5px
+	bottom 60px
+	left 25%
+	position absolute
+	text-shadow 0.1em 0.1em 0.05em #333
+	transform rotate(-20deg)
+
+.back-logo {
+	position: absolute;
+	top: 40px;
+	left: 90px;
+	width: 160px;
+	height: 117px;
+	background: url(http://davidwalsh.name/demo/logo.png) 0 0 no-repeat;
+}
+
+.back-title {
+	font-weight: bold;
+	color: #00304a;
+	position: absolute;
+	top: 180px;
+	left: 0;
+	right: 0;
+	text-align: center;
+	text-shadow: 0.1em 0.1em 0.05em #acd7e5;
+	font-family: Courier;
+	font-size: 2em;
+}
+
+.back p {
+	position: absolute;
+	bottom: 40px;
+	left: 0;
+	right: 0;
+	text-align: center;
+	padding: 0 20px;
+  font-family: arial;
+  line-height: 2em;
+}
+
+/*-------- Responsiveness --------*/

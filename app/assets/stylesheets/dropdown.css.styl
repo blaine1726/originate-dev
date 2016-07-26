@@ -1,0 +1,120 @@
+@import 'params.styl'
+
+dropdown-width = space*10
+dropdown-height = space*3
+
+.dropdown-outer
+  position relative
+  width 100%
+  text-align center
+
+.dropdown-left
+  position relative
+  width dropdown-width
+  float left
+  vertical-align middle
+
+.dropdown-right
+  position relative
+  width "calc(100% - %s)" % dropdown-width
+  float right
+
+.custom-dropdown-menu
+  transition all 0.25s ease-in-out
+  width dropdown-width
+  height dropdown-height
+  line-height space*3
+  font-size space
+  font-weight lighter
+  box-sizing border-box
+  margin space-x-small 0 space-x-small 0
+  padding-right space-x-small
+  padding-left space-x-small
+  border-left 1px solid light-gray
+
+.menu-caret
+  float right
+  height space*1
+  margin-top space
+  transition all 0.25s ease
+  &.selected
+    transform rotate(-90deg)
+
+.dropdown-item
+  float left
+  width dropdown-width
+  font-size space*1.2
+  font-weight lighter
+  line-height space*3
+  border-left 1px solid light-gray
+  box-sizing border-box
+  margin space-x-small 0 space-x-small 0
+  padding-right space-x-small
+  padding-left space-x-small
+  opacity 0
+  height 0
+  color black
+  transition all .25s ease-in-out
+  text-align left
+  &:hover
+    background-color medium-gray
+    color white
+  &.vis
+    opacity 1
+    height dropdown-height
+
+.resources-input
+  width dropdown-width
+  height dropdown-height
+  float left
+  font-size space*1.2
+  margin-top space*.6
+  margin-left space
+  &:focus
+    width "calc(100% - %s)" % space
+    box-shadow 0 2px 1px -1px light-gray
+
+.selected-option
+  font-size space*.8
+  float left
+  width dropdown-width
+  height dropdown-height
+  line-height dropdown-height
+  border-left 1px solid light-gray
+  margin space-x-small 0 space-x-small 0
+  padding-right space-x-small
+  padding-left space-x-small
+  color medium-gray
+  &:hover
+    background-color white
+    color medium-gray
+
+.selected-x
+  position absolute
+  width dropdown-width
+  height dropdown-height
+  top 0
+  margin-top space-x-small
+  z-index -1
+
+.x-svg
+  padding 0
+  float right
+  width 1.5rem
+  height 1.5rem
+  padding-top space-small
+  cursor pointer
+  z-index 10
+  transform rotateY(0)
+  fill light-gray
+  transition all .4s ease
+  &:hover
+    fill pastel-red
+    transform rotateY(180deg)
+    trasform-style preserve-3d
+
+.line
+  stroke light-gray
+
+.line2
+  stroke black

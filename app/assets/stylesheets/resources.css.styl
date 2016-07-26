@@ -1,0 +1,193 @@
+@import 'params.styl'
+
+.resource-tile-outer
+  position relative
+  width "calc((100% / 3) - %s)" % space
+  height 0
+  opacity 0
+  margin space*.5
+  padding-bottom calc(100% / 3)
+  vertical-align middle
+  float left
+  // transition box-shadow, opacity 0.25s ease-in-out
+  box-sizing border-box
+  overflow hidden
+  background-size: 100% 200%;
+  background-image: linear-gradient(to bottom, white 50%, black 50%);
+  transition: background-position .25s ease;
+  color black
+  border-bottom 3px solid black
+  display inline-block
+  &:hover, &:focus, &:active
+    opacity .9 !important
+    background-position: 0 -100%;
+    color white
+    transform: scale(2);
+    // box-shadow 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
+  @media only screen and (max-device-width: 1024px),
+    only screen and (max-width: 1024px)
+    width "calc(50% - %s)" % space
+    padding-bottom 50%
+  @media only screen and (max-device-width: 768px),
+    only screen and (max-width: 768px)
+    width "calc(100% - %s)" % space
+    height 0
+    padding-bottom 100%
+    margin-top space
+    margin-bottom space
+
+.resource-link
+  position absolute
+  z-index 1
+  width 100%
+  height 100%
+  left 0
+  top 0
+
+.resource-bg
+  position absolute
+  min-width 100%
+  min-height 100%
+  max-width 100%
+  max-height 100%
+  left 0
+  right 0
+  filter blur(3px)
+
+.resource-title
+  position relative
+  text-align left
+  padding-left space
+  padding-top space
+  font-size space*1.5
+  width 100%
+
+.resource-description
+  position relative
+  text-align left
+  float left
+  width "calc(100% - (%s * 3))" % space
+  padding space*1.5 space space space
+  font-size space*1.2
+
+.show-outer
+  position fixed
+  left 0
+  top 0
+  z-index 2
+  width 100%
+  height 100%
+  padding space*2
+
+.show-background
+  position fixed
+  background-color dark-gray
+  opacity .7
+  width 100%
+  height 100%
+  left 0
+  top 0
+  z-index -1
+
+.back-btn
+  position fixed
+  top 0
+  right 0
+  padding-right space*2.5
+  padding-top space
+
+.back-img
+  width space*3
+  padding space
+
+.show-title
+  position fixed
+  padding-bottom space
+  width "calc(100% - (%s * 4))" % space
+  box-sizing border-box
+  height space*7
+  padding space*2 space 0 space
+  border-bottom 1px solid dark-gray
+  background-color white
+  top 0
+  font-size space*1.6
+
+.show-title-main
+  margin-top - space
+
+.show-title-sub
+  font-size space
+
+.github-page
+  position fixed
+  right 0
+  top 0
+  padding-right space*8
+  padding-top space*2.5
+  font-size space*1.2
+
+.show-content
+  position fixed
+  margin-top space*5
+  // padding-left space*4
+  // padding-right space*4
+  height "calc(100% - (%s * 7))" % space
+  width "calc(100% - (%s * 4))" % space
+  overflow-y scroll
+  overflow-x none
+  box-sizing border-box
+  @media only screen and (max-device-width: 768px),
+    only screen and (max-width: 768px)
+    padding-left 0
+    padding-right 0
+    width "calc(100% - (%s * 4))" % space
+
+
+.show-content-desc
+  height wrap-content
+  position relative
+  overflow-y hidden
+  width 100%
+
+.show-content-details
+  height wrap-content
+  position relative
+  width 100%
+
+.show-img
+  position relative
+  width space*20
+  height space*20
+  float left
+
+.show-description
+  position relative
+  width "calc(100% - (%s * 21))" % space
+  font-size space*1.2
+  height space*20
+  float left
+  background-color white
+  margin-left space
+  box-sizing border-box
+
+.long-desc
+  padding-left space
+  font-size space*1.1
+  font-weight lighter
+
+.readme
+  width 100%
+  padding space
+  background-color white
+  margin-top space
+  font-size space
+
+.dropdown-outer
+  position relative
+  width 100%
+
+.selected-categories-outer
+  position relative
+  width 100%
+  float left
+  text-align left
