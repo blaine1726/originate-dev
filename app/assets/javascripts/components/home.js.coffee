@@ -18,6 +18,11 @@ React = require 'react'
     window.onwheel = @preventDefault #modern standard
     window.onmousewheel = document.onmousewheel = @preventDefault #old browsers
     window.ontouchmove = @preventDefault #mobile
+    @handlePageFlip()
+
+  incrementPage: ->
+    @setState scrollPosition: @state.scrollPosition + 1
+    @handlePageFlip()
 
   preventDefault: (e) ->
     e = e || window.event
@@ -30,7 +35,6 @@ React = require 'react'
       @setState scrolling: yes
       @setState scrollPosition: (@state.scrollPosition + 1) % 5
       @setScrollable()
-      console.log @state.scrollPosition
 
   setScrollable: ->
     # Delay for 2 seconds to make sure scrolling doesn't happen before
@@ -40,22 +44,23 @@ React = require 'react'
     ), 1500
     @handlePageFlip()
 
-  animateDown: ->
-    console.log "blah"
-    TweenLite.to('.scroll-down', 1, {height: 0})
-    @animateUp()
-
-  animateUp: ->
-    TweenLite.to('.scroll-down', 1, {height: "3rem"})
-
   animatePageZero: ->
-    @state.parallax.appendChild @state.animation
-    TweenLite.to(@state.parallax, 1, {opacity: 1})
-    @animateDown()
-    # while @state.showGoDown
-    #   @animateDown()
+    # console.log "blah"
+    # @state.parallax.removeChild @state.animation
+    $('.page-intro').typed({
+      strings: ['extraodinary', 'creative', 'impactful']
+      typeSpeed: 1})
+    setTimeout ( =>
+      if @state.scrollPosition == 0
+        @incrementPage()
+    ), 4000
 
   animatePageOne: ->
+    TweenLite.to('.full-page', .4, {top: '100%'}, ease:Expo.easeOut)
+    @state.parallax.appendChild @state.animation
+    TweenLite.to(@state.parallax, 1, {opacity: 1})
+
+  animatePageTwo: ->
     @setState showGoDown: no
     # Fade out the initial content
     TweenLite.to(@state.parallax, .5, {opacity: 0})
@@ -97,8 +102,14 @@ React = require 'react'
         "are Originate"],
         typeSpeed: 1})
     ), 1300
+    setTimeout ( ->
+      TweenLite.to('.left-menu', 1, {left: 10}, ease:Circ)
+      TweenLite.to('.item1', 1.5, {textDecoration: "line-through"}, ease:Power2)
+    ), 500
 
   handlePageFlip: ->
+    if @state.scrollPosition == 2
+      @animatePageTwo()
     if @state.scrollPosition == 1
       @animatePageOne()
     if @state.scrollPosition == 0
@@ -114,13 +125,17 @@ React = require 'react'
         div
           className: 'inner-home parallax-bg'
           id: 'home-animation'
+      div className: 'full-page',
+        span className: 'home-typed-constant', 'WE ARE '
+        span className: 'page-intro', ''
       div className: 'inner-home',
         div className: 'home-text',
           React.createElement Logo, null
       img
-        className: 'scroll-down'
+        className: 'scroll-down clickable'
         src: @props.assets.down
         alt: 'Scroll Down'
+        onClick: => @incrementPage()
       div
         className: 'home-content'
         id: 'home-1'
@@ -129,6 +144,11 @@ React = require 'react'
         div className: 'home-typed-outer',
           span className: 'home-typed-constant', 'WE '
           span className: 'home-typed', ''
+      div className: 'left-menu',
+        div className: 'left-menu-item item1', 'Identity'
+        div className: 'left-menu-item item2', 'AI-Native'
+        div className: 'left-menu-item item3', 'Partners'
+        div className: 'left-menu-item item4', 'Opportunity'
         # div className: 'slide-left', 'Left Content'
         # div className: 'slide-right', 'Right Content'
 
