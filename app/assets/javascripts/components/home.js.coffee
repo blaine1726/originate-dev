@@ -27,9 +27,9 @@ React = require 'react'
 
   handleScroll: (event) ->
     if !@state.scrolling
-      @setScrollable()
       @setState scrolling: yes
       @setState scrollPosition: (@state.scrollPosition + 1) % 5
+      @setScrollable()
       console.log @state.scrollPosition
 
   setScrollable: ->
