@@ -1,171 +1,114 @@
 React = require 'react'
 
 @Home = React.createClass
+  getInitialState: ->
+    scrollPosition: 0
+    scrolling: no
+    animation: null
+    parallax: null
+
+  componentDidMount: ->
+    @setState animation: document.getElementById('home-animation')
+    @setState parallax: document.getElementById('parallax-scroll')
+    document.body.scroll = 'no'
+    window.addEventListener 'wheel', @handleScroll
+    window.addEventListener 'DOMMouseScroll', @preventDefault, false
+    # Prevent scrolling on all of the browsers/platforms
+    window.onwheel = @preventDefault #modern standard
+    window.onmousewheel = document.onmousewheel = @preventDefault #old browsers
+    window.ontouchmove = @preventDefault #mobile
+
+  preventDefault: (e) ->
+    e = e || window.event
+    if (e.preventDefault)
+        e.preventDefault()
+    e.returnValue = false
+
+  handleScroll: (event) ->
+    if !@state.scrolling
+      @setScrollable()
+      @setState scrolling: yes
+      @setState scrollPosition: (@state.scrollPosition + 1) % 5
+
+  setScrollable: ->
+    # Delay for 2 seconds to make sure scrolling doesn't happen before
+    # the animations are finished
+    setTimeout ( =>
+      @setState scrolling: no
+    ), 1500
+    @handlePageFlip()
+
+  animatePageOne: ->
+    # Fade out the initial content
+    TweenLite.to(@state.parallax, .5, {opacity: 0})
+    TweenLite.to("#Logo", .5,
+      {fill: "#000000", width: "160px"},
+      ease:Power2.easeInOut)
+    TweenLite.to(".home-text", .5, {left: "calc(50% - 80px)"})
+    # setTimeout ( ->
+    #   TweenLite.to("#Logo", .5, {marginLeft: "50%"}, ease:Power2.easeInOut)
+    # ), 200
+    TweenLite.to(".inner-home", .5, {top: "60px"})
+    setTimeout ( =>
+      @state.parallax.removeChild @state.animation
+    ), 700
+    setTimeout ( ->
+      TweenLite.fromTo('.content1', .5,
+        {right: '100%'},
+        {right: 0},
+        ease:Expo.easeOut)
+      TweenLite.to("#Logo", .5, {fill: "#ffffff"}, ease:Expo.easeOut)
+      line = document.createElement 'div'
+      line.className = 'centered-line'
+      document.getElementById('home-1').appendChild line
+    ), 500
+    setTimeout ( ->
+      TweenLite.to('.centered-line', .3, {width: "75%"}, ease:Power2.easeOut)
+      TweenLite.to('.home-title', .1, {opacity: 1})
+      TweenLite.to('.home-typed-outer', .1, {opacity: 1})
+    ), 1000
+    setTimeout ( ->
+      $('.home-typed').typed({
+        strings: ['are AI-Native',
+        'take ownership of our partner projects',
+        "don't sell time, we sell talent and solutions",
+        "are entrepeneurs",
+        "are designers",
+        "are programmers",
+        "offer 150 experts to work on your problems",
+        "are Originate"],
+        typeSpeed: 1})
+    ), 1300
+
+  handlePageFlip: ->
+    if @state.scrollPosition == 1
+      @animatePageOne()
+    if @state.scrollPosition == 0
+      @state.parallax.appendChild @state.animation
+      TweenLite.to(@state.parallax, 1, {opacity: 1})
+
   render: ->
-    {a, div, img, svg, g, path, video, source} = React.DOM
+    {a, div, img, svg, g, path, video, source, p, span} = React.DOM
     div
-      className: 'parallax'
-      id: 'parallax-scroll'
-      div className: 'parallax__group group1',
-        div className: 'parallax__layer parallax__layer--base',
-          div className: 'inner-home',
-            div className: 'home-text',
-              React.createElement Logo, null
-        div className: 'parallax__layer parallax__layer--back color1',
-          div
-            className: 'inner-home parallax-bg'
-            id: 'home-animation'
-      div className: 'parallax__group group2',
-        div className: 'parallax__layer parallax__layer--base',
-          div className: 'inner-home',
-            div className: 'text-shadow', ""
-        div className: 'parallax__layer parallax__layer--back color2',
-          div className: 'inner-home', ''
-      div className: 'parallax__group group3',
-        div className: 'parallax__layer parallax__layer--base',
-          div className: 'inner-home-base',
-            div className: 'home-base-inner',
-              div className: 'text-shadow', "Originate Design"
-            div className: 'home-base-inner right',
-              img
-                className: 'home-iphone'
-                src: @props.assets.iphone
-        div className: 'parallax__layer parallax__layer--back color3',
-          div className: 'inner-home',
-            img
-              className: 'parallax-img'
-              src: @props.assets.newyork
-      div className: 'parallax__group group2',
-        div className: 'parallax__layer parallax__layer--base',
-          div className: 'inner-home',
-            div className: 'text-shadow', ""
-        div className: 'parallax__layer parallax__layer--back color2',
-          div className: 'inner-home', ''
-      div className: 'parallax__group group3',
-        div className: 'parallax__layer parallax__layer--base',
-          div className: 'inner-home-base',
-            div className: 'home-base-inner',
-              div className: 'text-shadow', "Originate Design"
-            div className: 'home-base-inner right',
-              img
-                className: 'home-iphone'
-                src: @props.assets.iphone
-        div className: 'parallax__layer parallax__layer--back color3',
-          div
-            className: 'inner-home parallax-bg'
-            id: 'bird-container'
-      div className: 'parallax__group group2',
-        div className: 'parallax__layer parallax__layer--base',
-          div className: 'inner-home',
-            div className: 'text-shadow', ""
-        div className: 'parallax__layer parallax__layer--back color2',
-          div className: 'inner-home', 'back'
-      div className: 'parallax__group group3',
-        div className: 'parallax__layer parallax__layer--back color1',
-          div className: 'inner-home',
-            div {}, "We design, build, operate, and invest in transformative software products"
-          div className: 'home-explore',
-            a
-              className: 'explore-link clickable'
-              href: '/design'
-              div {}, 'Explore'
+      className: 'home-outer'
+      div
+        className: 'parallax'
+        id: 'parallax-scroll'
+        div
+          className: 'inner-home parallax-bg'
+          id: 'home-animation'
+      div className: 'inner-home',
+        div className: 'home-text',
+          React.createElement Logo, null
+      div
+        className: 'home-content'
+        id: 'home-1'
+        div className: 'content1', ''
+        div className: 'home-title', 'IDENTITY'
+        div className: 'home-typed-outer',
+          span className: 'home-typed-constant', 'WE '
+          span className: 'home-typed', ''
+        # div className: 'slide-left', 'Left Content'
+        # div className: 'slide-right', 'Right Content'
 
 module.exports = @Home
-            # img
-            #   className: 'parallax-img'
-            #   src: "<%= asset_path('newyork.jpeg') %>"
-      # div className: 'parallax__group group3',
-      #   div className: 'parallax__layer parallax__layer--base',
-      #     div className: 'inner-home', "Base"
-      #   div className: 'parallax__layer parallax__layer--back',
-      #     div className: 'inner-home', "Back"
-      #   # id: 'group1'
-      #   div className: 'parallax__layer parallax__layer--base',
-      #     div className: 'inner', 'Base'
-      #     # div className: 'home-text',
-      #     #   React.createElement Logo, null
-      #   div
-      #     className: 'parallax__layer parallax__layer--back'
-      #     div className: 'inner', "Background"
-      #     # id: 'home-animation'
-      #     # div className: 'inner',
-      #     #   div className: 'explore',
-      #     #     img
-      #     #       className: 'home-arrow clickable'
-      #     #       src: "<%= asset_path('down.png') %>"
-      # div className: 'parallax__group',
-      #   # id: 'group2'
-      #   div className: 'parallax__layer parallax__layer--base',
-      #     div className: 'inner', "Base"
-      #       # img
-      #       #   className: 'home-iphone'
-      #       #   src: "<%= asset_path('iphone.png') %>"
-      #   div
-      #     className: 'parallax__layer parallax__layer--back'
-      #     div className: 'inner',
-      #       "BACK"
-      # div
-      #   className: 'parallax__group'
-      #   id: 'home2'
-      #   div
-      #     className: 'parallax__layer parallax__layer--back'
-      #     img
-      #       className: 'home-iphone'
-      #       src: "<%= asset_path('iphone.png') %>"
-      #   div
-      #     className: 'parallax__layer parallax__layer--base'
-      #     "We design the most revolutionary software"
-      # div
-      #   className: 'parallax__group'
-      #   id: 'home3'
-      #   'Page 3'
-
-
-
-
-
-
-
-    #---------------- OLD HOME PAGE ------------------
-      # div className: 'sub-header divider',
-      #   span className: 'sub-header-text',
-      #     "We use design and technology to solve the world's most ambitious problems"
-      # div className: 'padded-container divider',
-      #   React.createElement NavTile,
-      #     name: 'Solutions'
-      #     path: 'solutions'
-      #   React.createElement NavTile,
-      #     name: 'Technology'
-      #     path: 'technology'
-      #   React.createElement NavTile,
-      #     name: 'Design'
-      #     path: 'design'
-      #   React.createElement NavTile,
-      #     name: 'People'
-      #     path: 'people'
-      #   React.createElement NavTile,
-      #     name: 'Resources'
-      #     path: 'resources'
-      #   React.createElement NavTile,
-      #     name: 'Careers'
-      #     path: 'careers'
-      # div className: 'padded-container divider',
-      #   React.createElement NavTile,
-      #     name: 'GitHub'
-      #     icon: '/images/git.png'
-      #   React.createElement NavTile,
-      #     name: 'Instagram'
-      #     icon: '/images/insta.png'
-      #   React.createElement NavTile,
-      #     name: 'LinkedIn'
-      #     icon: '/images/in.png'
-      # div className: 'padded-container divider',
-      #   div className: 'contact-us', 'Contact us'
-      #   div className: 'home-o',
-      #     img
-      #       className: 'logo-o'
-      #       src: '/images/T96-0rfi.jpeg'
-      # div className: 'padded-container-small',
-      #   img
-      #     className: 'down-arrow'
-      #     src: '/images/Icons8-Ios7-Arrows-Down-4 (1).ico'

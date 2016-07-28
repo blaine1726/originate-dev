@@ -10,6 +10,9 @@ body
   margin 0
   padding 0
 
+p
+  margin 0
+
 // .home-page-1, .home-page-2, .home-page-3
 //   position static
 //   width 100vw
@@ -50,23 +53,17 @@ body
 .home-page-1
   margin-bottom - space*.3
 
-// .landing
-//   width 100%
-//   height 100%
-//   position absolute
-//   background-color #000
-//   margin 0px
-//   overflow hidden
-
 .home-text
   position absolute
   color white
-  top 50%
-  left 50%
+  top "calc(50% - (%s * 3))" % space
+  left "calc(50% - (%s * 10))" % space
+
+#Logo
+  padding 0
+  z-index 10000
 
 .logo-fade
-  margin-left -419.33px
-  margin-top -280.015px
   fill white
 
 .explore
@@ -86,16 +83,38 @@ body
   @media screen and (max-width: 768px)
     margin-top 0
 
+.home-content
+  position relative
+  width 100vw
+  height 100vh
+
+// #home-1
+//   background-color pastel-blue
+//
+// #home-2
+//   background-color pastel-red
+//
+// #home-3
+//   background-color pastel-blue
+//
+// #home-4
+//   background-color pastel-red
+
 
 /*------------ Parallax Effect ------------*/
 
+.home-outer
+  width 100%
+  height 100%
+  overflow-y scroll
+
 .parallax
-  overflow-x hidden
-  overflow-y auto
+  overflow hidden
   height 100vh
   perspective 1px
   scroll-behavior smooth
   background-color black
+  z-index 2
 
 .parallax__group
   position relative
@@ -151,7 +170,7 @@ body
   font-size space*2
   text-align center
   transform translate(-50%, -50%)
-  -webkit-transform translate(-50%, -50%)
+  z-index 10
   .left
     left 0
     padding-left space*2
@@ -190,3 +209,69 @@ body
   position relative
   color pastel-blue !important
   z-index 100
+
+.home-content
+  position fixed
+  top 0
+  left 0
+  width 100vw
+  height 100vh
+
+.slide-left
+  position absolute
+  width 0
+  height 0
+  border-left 100vw solid black
+  border-top 100vh solid transparent
+  text-align left
+  color white
+  opacity 0
+  visibility hidden
+
+.slide-right
+  position absolute
+  width 0
+  height 0
+  border-right 100vw solid white
+  border-bottom 100vh solid transparent
+  text-align right
+  color black
+  opacity 0
+  visibility hidden
+
+.content1
+  position absolute
+  right 100%
+  width 100%
+  height 100%
+  background-color black
+
+.centered-line
+  position absolute
+  width 0
+  margin-left 12.5%
+  height 0
+  box-sizing border-box
+  top space*15
+  border-bottom 1px solid white
+
+.home-title, .home-typed-outer
+  position absolute
+  font-size space*3
+  opacity 0
+  width 100%
+  color white
+  margin-top space*10
+  text-align center
+
+.home-typed-outer
+  margin-top space*20
+
+.typed-cursor
+  opacity: 1;
+  animation: blink 1.5s infinite;
+
+@keyframes blink
+  0% { opacity:1; }
+  50% { opacity:0; }
+  100% { opacity:1; }

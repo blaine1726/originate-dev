@@ -19,6 +19,7 @@
 //= require canvasrenderer
 //= require projector
 //= require bird
+//= require typed.min
 
 //Ideally should just have require components
 
@@ -472,3 +473,4 @@ window.onload = function() {
 }
 
 require('./components');
+// After the components are loaded, TweenMax is available. Must go below require
