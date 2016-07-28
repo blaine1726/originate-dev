@@ -6,6 +6,7 @@ React = require 'react'
     scrolling: no
     animation: null
     parallax: null
+    showGoDown: yes
 
   componentDidMount: ->
     @setState animation: document.getElementById('home-animation')
@@ -29,6 +30,7 @@ React = require 'react'
       @setScrollable()
       @setState scrolling: yes
       @setState scrollPosition: (@state.scrollPosition + 1) % 5
+      console.log @state.scrollPosition
 
   setScrollable: ->
     # Delay for 2 seconds to make sure scrolling doesn't happen before
@@ -38,7 +40,23 @@ React = require 'react'
     ), 1500
     @handlePageFlip()
 
+  animateDown: ->
+    console.log "blah"
+    TweenLite.to('.scroll-down', 1, {height: 0})
+    @animateUp()
+
+  animateUp: ->
+    TweenLite.to('.scroll-down', 1, {height: "3rem"})
+
+  animatePageZero: ->
+    @state.parallax.appendChild @state.animation
+    TweenLite.to(@state.parallax, 1, {opacity: 1})
+    @animateDown()
+    # while @state.showGoDown
+    #   @animateDown()
+
   animatePageOne: ->
+    @setState showGoDown: no
     # Fade out the initial content
     TweenLite.to(@state.parallax, .5, {opacity: 0})
     TweenLite.to("#Logo", .5,
@@ -84,8 +102,7 @@ React = require 'react'
     if @state.scrollPosition == 1
       @animatePageOne()
     if @state.scrollPosition == 0
-      @state.parallax.appendChild @state.animation
-      TweenLite.to(@state.parallax, 1, {opacity: 1})
+      @animatePageZero()
 
   render: ->
     {a, div, img, svg, g, path, video, source, p, span} = React.DOM
@@ -100,6 +117,10 @@ React = require 'react'
       div className: 'inner-home',
         div className: 'home-text',
           React.createElement Logo, null
+      img
+        className: 'scroll-down'
+        src: @props.assets.down
+        alt: 'Scroll Down'
       div
         className: 'home-content'
         id: 'home-1'

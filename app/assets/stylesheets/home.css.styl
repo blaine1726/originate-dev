@@ -275,3 +275,11 @@ p
   0% { opacity:1; }
   50% { opacity:0; }
   100% { opacity:1; }
+
+.scroll-down
+  width space*8
+  box-sizing border-box
+  position absolute
+  color white
+  left "calc(50% - (%s * 4))" % space
+  top "calc(100% - (%s * 4))" % space
