@@ -3,9 +3,6 @@
 pastel-gray = #cfcfc4
 pastel-blue = #aec6cf
 
-div
-  display block
-
 body
   margin 0
   padding 0
@@ -53,17 +50,11 @@ p
 .home-page-1
   margin-bottom - space*.3
 
-.home-text
-  position absolute
-  color white
-  top "calc(50% - (%s * 3))" % space
-  left "calc(50% - (%s * 10))" % space
-
-#Logo
-  padding 0
-
-.logo-fade
-  fill white
+// .home-text
+//   position absolute
+//   color white
+//   top "calc(50% - (%s * 3))" % space
+//   left "calc(50% - (%s * 10))" % space
 
 .explore
   position inherit
@@ -83,9 +74,18 @@ p
     margin-top 0
 
 .home-content
-  position relative
-  width 100vw
-  height 100vh
+  position absolute
+  width 100%
+  height 100%
+  color white
+  display table
+
+.home-middle
+  display table-cell
+  vertical-align middle
+
+.home-inner
+  width "calc(100% - (%s * 0))" % space
 
 // #home-1
 //   background-color pastel-blue
@@ -105,7 +105,9 @@ p
 .home-outer
   width 100%
   height 100%
+  background-color black
   overflow-y scroll
+  position fixed
 
 .parallax
   overflow hidden
@@ -209,12 +211,12 @@ p
   color pastel-blue !important
   z-index 100
 
-.home-content
-  position fixed
-  top 0
-  left 0
-  width 100vw
-  height 100vh
+// .home-content
+//   position fixed
+//   top 0
+//   left 0
+//   width 100vw
+//   height 100vh
 
 .slide-left
   position absolute
@@ -248,20 +250,36 @@ p
 .centered-line
   position absolute
   width 0
-  margin-left 12.5%
   height 0
   box-sizing border-box
-  top space*15
+  margin-top space
+  margin-left 5%
   border-bottom 1px solid white
 
-.home-title, .home-typed-outer
-  position absolute
-  font-size space*3
-  opacity 0
+// .home-title, .home-typed-outer
+//   position absolute
+//   font-size space*3
+//   opacity 0
+//   width 100%
+//   color white
+//   margin-top space*10
+//   text-align center
+
+#home-title, #home-text
   width 100%
-  color white
-  margin-top space*10
   text-align center
+  box-sizing border-box
+  position absolute
+  right 100%
+  opacity 0
+
+#home-title
+  margin-top - space*3
+  font-size space*2
+
+#home-text
+  margin-top space*2
+  font-size space*1.5
 
 .home-typed-outer
   margin-top space*20

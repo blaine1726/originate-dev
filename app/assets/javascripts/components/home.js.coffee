@@ -5,49 +5,33 @@ React = require 'react'
 @Home = React.createClass
   getInitialState: ->
     scrollPosition: 0
-    scrolling: no
-    animation: null
-    parallax: null
-    showGoDown: yes
+    title: null
+    titleTween: null
+    text: null
+    textTween: null
     line: null
-    fadeInitial: null
-    logo: null
-    homeText: null
-    homeInner: null
-    content1: null
-    logoLite: null
-    homeTitle: null
-    homeType: null
-    leftMenu: null
-    item1: null
+    topNav: null
 
   componentDidMount: ->
-    parallax = document.getElementById('parallax-scroll')
-    @setState animation: document.getElementById('home-animation')
-    @setState parallax: parallax
     document.body.scroll = 'no'
     window.addEventListener 'wheel', @handleScroll
     window.addEventListener 'DOMMouseScroll', @preventDefault, false
+
     # Prevent scrolling on all of the browsers/platforms
     window.onwheel = @preventDefault #modern standard
     window.onmousewheel = document.onmousewheel = @preventDefault #old browsers
     window.ontouchmove = @preventDefault #mobile
-    # Need to stop the propogation of each of the elements here
-    line = document.createElement 'div'
-    line.className = 'centered-line'
-    @state.line = line
-    @state.fadeInitial = TweenLite.to(parallax, .5, {opacity: 0, paused: yes})
-    @state.logo = TweenLite.to("#Logo", .5, {fill: "#000000", width: "160px", paused: yes},
-      ease:Power2.easeInOut)
-    @state.homeText = TweenLite.to(".home-text", .5, {left: "calc(50% - 80px)", paused: yes})
-    @state.homeInner = TweenLite.to(".inner-home", .5, {top: "60px", paused: yes})
-    @state.content1 = TweenLite.to('.content1', .5, {right: 0, delay: 0.5, paused: yes},
-      ease:Expo.easeOut)
-    @state.logoLite = TweenLite.to("#Logo", .5, {fill: "#ffffff", paused: yes}, ease:Expo.easeOut)
-    @state.homeTitle = TweenLite.to('.home-title', .1, {opacity: 1, delay: 1, paused: yes})
-    @state.homeType = TweenLite.to('.home-typed-outer', .1, {opacity: 1, delay: 1, paused: yes})
-    @state.leftMenu = TweenLite.to('.left-menu', 1, {left: 10, delay: 0.5, paused: yes}, ease:Circ)
-    @state.item1 = TweenLite.to('.item1', 1.5, {textDecoration: "line-through", delay: 0.5, paused: yes}, ease:Power2)
+
+    @setState title: document.getElementById 'home-title'
+    @setState text: document.getElementById 'home-text'
+    @setState titleTween: TweenLite.to("#home-title", .4,
+      {right: 0, opacity: 1, paused: yes, delay: .3}, ease:Power2.easeInOut)
+    @setState textTween: TweenLite.to('#home-text', .5,
+      {right: 0, opacity: 1, paused: yes, delay: .3}, ease:Power2.easeInOut)
+    @setState line: TweenLite.to('.centered-line', .4,
+      {width: "90%", paused: yes, delay: .5}, ease:Expo.easeInOut)
+    @setState topNav: TweenLite.to('.top-nav', .7,
+      {opacity: 1, paused: yes, delay: .3}, ease: Expo.easeInOut)
     @animatePage 'next'
 
   incrementPage: ->
@@ -71,7 +55,9 @@ React = require 'react'
           direction = "previous"
           @setState scrollPosition: (@state.scrollPosition - 1) % 3
         @setState scrolling: yes
+        @setState direction: direction
         @setScrollable direction
+        # TODO: Check to see if I should even have this passing in the direction
 
   setScrollable: (direction) ->
     # Delay for 2 seconds to make sure scrolling doesn't happen before
@@ -80,6 +66,21 @@ React = require 'react'
       @setState scrolling: no
     ), 1500
     @animatePage direction
+
+  playGenericContent: ->
+    @state.titleTween.play()
+    @state.textTween.play()
+    @state.line.play()
+    @state.topNav.play()
+
+  reverseGenericContent: ->
+    # TweenLite.to('#home-title', .4, {opacity: 0, left: "100%"}, ease:Expo.easeOut)
+    # # TweenLite.to('#home-title', 0, {left: 0, delay: .4})
+    # TweenLite.to('#home-text', .4, {opacity: 0, left: "100%"}, ease:Expo.easeOut)
+    # # TweenLite.to('#home-text', 0, {left: 0, delay: .4})
+    @state.titleTween.reverse()
+    @state.textTween.reverse()
+    @state.line.reverse()
 
   animatePageZero: ->
     # Direction doesn't actually matter for this one
@@ -92,66 +93,25 @@ React = require 'react'
     ), 4000
 
   animatePageOne: ->
-    TweenLite.to('.full-page', .4, {top: '100%'}, ease:Expo.easeOut)
-    @state.parallax.appendChild @state.animation
-    TweenLite.to(@state.parallax, 1, {opacity: 1})
+    TweenLite.to('.full-page', .6, {top: '100%'}, ease:Expo.easeOut)
+    @state.title.innerHTML = 'AI-Native'
+    @state.text.innerHTML = "We're exploring the depths and possibilities of AI in every day technologies"
+    @playGenericContent()
 
   animatePageTwo: ->
-    @state.fadeInitial.play()
-    @state.logo.play()
-    @state.homeText.play()
-    @state.homeInner.play()
+    if @state.direction == "next"
+      @reverseGenericContent()
     setTimeout ( =>
-      @state.parallax.removeChild @state.animation
-    ), 700
-    @state.content1.play()
-    @state.logoLite.play()
-    setTimeout ( =>
-      document.getElementById('home-1').appendChild @state.line
-      TweenLite.to('.centered-line', .3, {width: "75%", delay: 0.5}, ease:Power2.easeOut)
+      @state.title.innerHTML = "People"
+      @state.text.innerHTML = "Our people are the driving force behind our innovation"
+      @playGenericContent()
     ), 500
-    @state.homeTitle.play()
-    @state.homeType.play()
-    # Abstract this out into its own method!
-    setTimeout ( ->
-      $('.home-typed').typed({
-        strings: ['are AI-Native',
-        'take ownership of our partner projects',
-        "don't sell time, we sell talent and solutions",
-        "are entrepeneurs",
-        "are designers",
-        "are programmers",
-        "offer 150 experts to work on your problems",
-        "are Originate"],
-        typeSpeed: 1})
-    ), 1300
-    @state.leftMenu.play()
-    @state.item1.play()
-
-  reversePageTwo: ->
-    @state.fadeInitial.reverse()
-    @state.logo.reverse()
-    @state.homeText.reverse()
-    @state.homeInner.reverse()
-    setTimeout ( =>
-      @state.parallax.appendChild @state.animation
-    ), 700
-    @state.content1.reverse()
-    @state.logoLite.reverse()
-    setTimeout ( =>
-      document.getElementById('home-1').removeChild @state.line
-    ), 500
-    @state.homeTitle.reverse()
-    @state.homeType.reverse()
-    @state.leftMenu.reverse()
-    @state.item1.reverse()
 
   animatePage: (direction) ->
-    console.log @state.scrollPosition
     if @state.scrollPosition == 2
       @animatePageTwo()
     else if @state.scrollPosition == 1
-      if direction = "previous" then @reversePageTwo()
+      # if direction == "previous" then @reversePageTwo()
       @animatePageOne()
     else if @state.scrollPosition == 0
       @animatePageZero()
@@ -160,37 +120,22 @@ React = require 'react'
     {a, div, img, svg, g, path, video, source, p, span} = React.DOM
     div
       className: 'home-outer'
-      div
-        className: 'parallax'
-        id: 'parallax-scroll'
-        div
-          className: 'inner-home parallax-bg'
-          id: 'home-animation'
+      React.createElement TopNav, null
       div className: 'full-page',
         span className: 'home-typed-constant', 'WE ARE '
         span className: 'page-intro', ''
-      div className: 'inner-home',
-        div className: 'home-text',
-          React.createElement Logo, null
       img
         className: 'scroll-down clickable'
         src: @props.assets.down
         alt: 'Scroll Down'
         onClick: => @incrementPage()
-      div
-        className: 'home-content'
-        id: 'home-1'
-        div className: 'content1', ''
-        div className: 'home-title', 'IDENTITY'
-        div className: 'home-typed-outer',
-          span className: 'home-typed-constant', 'WE '
-          span className: 'home-typed', ''
-      div className: 'left-menu',
-        div className: 'left-menu-item item1', 'Identity'
-        div className: 'left-menu-item item2', 'AI-Native'
-        div className: 'left-menu-item item3', 'Partners'
-        div className: 'left-menu-item item4', 'Opportunity'
-        # div className: 'slide-left', 'Left Content'
-        # div className: 'slide-right', 'Right Content'
+      div className: 'home-content',
+        div className: 'home-middle',
+          div className: 'home-inner',
+            div className: 'centered-line', ''
+            div
+              id: 'home-title'
+            div
+              id: 'home-text'
 
 module.exports = @Home

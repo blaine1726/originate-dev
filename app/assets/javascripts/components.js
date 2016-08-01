@@ -20,4 +20,5 @@ window.ShowResource = require('./components/show_resource');
 window.Solutions = require('./components/solutions');
 window.Technology = require('./components/technology');
 window.Tile = require('./components/tile');
+window.TopNav = require('./components/top_nav');
 window.Error = require('./components/404');
