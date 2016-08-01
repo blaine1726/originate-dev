@@ -11,6 +11,7 @@ React = require 'react'
     textTween: null
     line: null
     topNav: null
+    onWheel: null
 
   componentDidMount: ->
     document.body.scroll = 'no'
@@ -33,6 +34,14 @@ React = require 'react'
     @setState topNav: TweenLite.to('.top-nav', .7,
       {opacity: 1, paused: yes, delay: .3}, ease: Expo.easeInOut)
     @animatePage 'next'
+
+  componentWillUnmount: ->
+    window.removeEventListener 'wheel', @handleScroll
+    window.removeEventListener 'DOMMouseScroll', @preventDefault, false
+    window.onwheel = null
+    window.onmousewheel = document.onmousewheel = null
+    window.ontouchmove = null
+    document.body.scroll = 'yes'
 
   incrementPage: ->
     @setState scrollPosition: @state.scrollPosition + 1
