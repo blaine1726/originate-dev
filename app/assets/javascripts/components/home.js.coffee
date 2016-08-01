@@ -50,17 +50,23 @@ React = require 'react'
         direction = null
         if (event.deltaY > 0)
           direction = "next"
-          @setState scrollPosition: (@state.scrollPosition + 1) % 3
+          if @state.scrollPosition == 2
+            @setState scrollPosition: 1
+          else
+            @setState scrollPosition: (@state.scrollPosition + 1)
         else
           direction = "previous"
-          @setState scrollPosition: (@state.scrollPosition - 1) % 3
+          if @state.scrollPosition == 1 or @state.scrollPosition == 0
+            @setState scrollPosition: 2
+          else
+            @setState scrollPosition: (@state.scrollPosition - 1)
         @setState scrolling: yes
         @setState direction: direction
         @setScrollable direction
         # TODO: Check to see if I should even have this passing in the direction
 
   setScrollable: (direction) ->
-    # Delay for 2 seconds to make sure scrolling doesn't happen before
+    # Delay for 1.5 seconds to make sure scrolling doesn't happen before
     # the animations are finished
     setTimeout ( =>
       @setState scrolling: no
@@ -74,10 +80,6 @@ React = require 'react'
     @state.topNav.play()
 
   reverseGenericContent: ->
-    # TweenLite.to('#home-title', .4, {opacity: 0, left: "100%"}, ease:Expo.easeOut)
-    # # TweenLite.to('#home-title', 0, {left: 0, delay: .4})
-    # TweenLite.to('#home-text', .4, {opacity: 0, left: "100%"}, ease:Expo.easeOut)
-    # # TweenLite.to('#home-text', 0, {left: 0, delay: .4})
     @state.titleTween.reverse()
     @state.textTween.reverse()
     @state.line.reverse()
@@ -94,13 +96,15 @@ React = require 'react'
 
   animatePageOne: ->
     TweenLite.to('.full-page', .6, {top: '100%'}, ease:Expo.easeOut)
-    @state.title.innerHTML = 'AI-Native'
-    @state.text.innerHTML = "We're exploring the depths and possibilities of AI in every day technologies"
-    @playGenericContent()
+    @reverseGenericContent()
+    setTimeout ( =>
+      @state.title.innerHTML = 'AI-Native'
+      @state.text.innerHTML = "We're exploring the depths and possibilities of AI in every day technologies"
+      @playGenericContent()
+    ), 500
 
   animatePageTwo: ->
-    if @state.direction == "next"
-      @reverseGenericContent()
+    @reverseGenericContent()
     setTimeout ( =>
       @state.title.innerHTML = "People"
       @state.text.innerHTML = "Our people are the driving force behind our innovation"
