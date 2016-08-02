@@ -12,6 +12,9 @@ React = require 'react'
     line: null
     topNav: null
     onWheel: null
+    gear1: null
+    gear2: null
+    gear3: null
     direction: 'next'
 
   componentDidMount: ->
@@ -35,6 +38,12 @@ React = require 'react'
       {width: "90%", paused: yes, delay: .5}, ease:Expo.easeInOut)
     @setState topNav: TweenLite.to('.top-nav', .7,
       {opacity: 1, paused: yes, delay: .3}, ease: Expo.easeInOut)
+    @setState gear1: TweenMax.to('#gear1', 20,
+      {rotationZ: "360deg", repeat: -1, transformOrigin:"180px 180px", paused: yes}, ease:Linear)
+    @setState gear2: TweenMax.to('#gear2', 20,
+      {rotationZ: "-360deg", repeat: -1, transformOrigin:"180px 180px", paused: yes}, ease:Linear)
+    @setState gear3: TweenMax.to('#gear3', 20,
+      {rotationZ: "360deg", repeat: -1, transformOrigin:"180px 180px", paused: yes}, ease:Linear)
     @animatePage 'next'
 
   componentWillUnmount: ->
@@ -111,6 +120,18 @@ React = require 'react'
         @incrementPage()
     ), 4000
 
+  playGears: ->
+    TweenLite.to('.gear', .6, {opacity: .8, delay: .5}, ease:Linear.easeInOut)
+    @state.gear1.play()
+    @state.gear2.play()
+    @state.gear3.play()
+
+  pauseGears: ->
+    TweenLite.to('.gear', .4, {opacity: 0})
+    @state.gear1.pause()
+    @state.gear2.pause()
+    @state.gear3.pause()
+
   animatePageOne: ->
     TweenLite.to('.full-page', .6, {top: '100%'}, ease:Expo.easeOut)
     @reverseGenericContent()
@@ -118,16 +139,13 @@ React = require 'react'
       @state.title.innerHTML = 'AI-Native'
       @state.text.innerHTML = "We're exploring the depths and possibilities of AI in every day technologies"
       @playGenericContent()
-      TweenLite.to('.gear', .6, {opacity: .8, delay: .5}, ease:Linear.easeInOut)
-      TweenMax.to('#gear1', 20, {rotationZ: "360deg", repeat: -1, transformOrigin:"180px 180px", delay: .5}, ease:Linear.easeInOut)
-      TweenMax.to('#gear2', 20, {rotationZ: "-360deg", repeat: -1, transformOrigin:"180px 180px", delay: .5}, ease:Linear.easeInOut)
-      TweenMax.to('#gear3', 20, {rotationZ: "360deg", repeat: -1, transformOrigin:"180px 180px", delay:.5}, ease:Linear.easeInOut)
+      @playGears()
     ), 500
 
   animatePageTwo: ->
     @reverseGenericContent()
-    if @state.direction == "next"
-      TweenLite.to('.gear', .4, {opacity: 0})
+    @pauseGears()
+    @state.gear1
     setTimeout ( =>
       @state.title.innerHTML = "People"
       @state.text.innerHTML = "Our people are the driving force behind our innovation"
