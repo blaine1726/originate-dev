@@ -87,6 +87,21 @@ p
 .home-inner
   width "calc(100% - (%s * 0))" % space
 
+.gears
+  z-index -1
+  fill dark-gray
+  position absolute
+  padding 0
+  height 100%
+  width 100%
+
+.gear
+  opacity 0
+  padding 0
+  right 100%
+
+
+
 // #home-1
 //   background-color pastel-blue
 //
@@ -300,6 +315,7 @@ p
   color white
   left "calc(50% - (%s * 4))" % space
   top "calc(100% - (%s * 4))" % space
+  z-index 2
 
 .full-page
   position fixed
