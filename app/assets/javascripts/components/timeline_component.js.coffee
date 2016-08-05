@@ -6,6 +6,7 @@ React = require 'react'
     master.add @loadRing(), "scene1"
 
   loadRing: ->
+    outerRing = document.getElementById 'ring'
     ring1 = document.getElementById 'line1'
     ring2 = document.getElementById 'line2'
     ring3 = document.getElementById 'line3'
@@ -13,7 +14,10 @@ React = require 'react'
     ring5 = document.getElementById 'line5'
     tl = new TimelineMax(repeat: -1)
     tl.add('start')
-    tl.fromTo(ring1, 2, {
+    tl.to(outerRing, 0, {
+      scale: .5
+    }, 'start')
+    .fromTo(ring1, 2, {
       rotation: 0
     }, {
       rotation: 360,
@@ -40,14 +44,14 @@ React = require 'react'
       rotation: 360,
       svgOrigin: "150 150",
       ease:Linear.easeInOut
-    }, 'start')
+    }, 'start+=.5')
     .fromTo(ring5, 2.75, {
       rotation: 0
     }, {
       rotation: -360,
       svgOrigin: "150 150",
       ease:Linear.easeInOut
-    }, 'start')
+    }, 'start+=.25')
     tl.timeScale(1.5)
 
   complete: ->
