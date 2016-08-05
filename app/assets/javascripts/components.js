@@ -11,6 +11,7 @@ window.HeaderMenu = require('./components/header_menu');
 window.HeaderSmall = require('./components/header_small');
 window.Header = require('./components/header');
 window.Home = require('./components/home');
+window.Home2 = require('./components/home2');
 window.Logo = require('./components/logo');
 window.NavTile = require('./components/nav_tile');
 window.PeopleTile = require('./components/people_tile');

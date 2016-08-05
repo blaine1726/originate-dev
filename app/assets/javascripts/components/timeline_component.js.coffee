@@ -17,14 +17,14 @@ React = require 'react'
     tl.to(outerRing, 0, {
       scale: .5
     }, 'start')
-    .fromTo(ring1, 2, {
+    .fromTo(ring1, 3, {
       rotation: 0
     }, {
       rotation: 360,
       svgOrigin: "150 150",
       ease:Linear.easeInOut
     }, 'start')
-    .fromTo(ring2, 2.5, {
+    .fromTo(ring2, 3, {
       rotation: 0
     }, {
       rotation: -360,
@@ -38,20 +38,20 @@ React = require 'react'
       svgOrigin: "150, 150",
       ease:Linear.easeInOut
     }, 'start')
-    .fromTo(ring4, 2.25, {
+    .fromTo(ring4, 3, {
       rotation: 0
     }, {
       rotation: 360,
       svgOrigin: "150 150",
       ease:Linear.easeInOut
-    }, 'start+=.5')
-    .fromTo(ring5, 2.75, {
+    }, 'start')
+    .fromTo(ring5, 3, {
       rotation: 0
     }, {
       rotation: -360,
       svgOrigin: "150 150",
       ease:Linear.easeInOut
-    }, 'start+=.25')
+    }, 'start')
     tl.timeScale(1.5)
 
   complete: ->

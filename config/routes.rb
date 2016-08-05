@@ -36,6 +36,8 @@ Rails.application.routes.draw do
 
   get 'timeline', to: 'timeline_component#index'
 
+  get 'parallax', to: 'home2#index'
+
   match "/404", :to => "errors#not_found", :via => :all
 
   match "/500", :to => "errors#internal_server_error", :via => :all

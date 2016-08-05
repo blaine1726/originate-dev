@@ -1,0 +1,369 @@
+@import 'params.styl'
+
+pastel-gray = #cfcfc4
+pastel-blue = #aec6cf
+
+body
+  margin 0
+  padding 0
+
+p
+  margin 0
+
+// .home-page-1, .home-page-2, .home-page-3
+//   position static
+//   width 100vw
+//   height 100vh
+//   display block
+//   overflow auto
+
+.group1
+  z-index 5
+
+.group2
+  z-index 2
+
+.group3
+  z-index 3
+
+.group4
+  z-index 2
+
+.group5
+  z-index 1
+
+.color1
+  background-color black
+
+.color2
+  background-color medium-gray
+
+.color3
+  background-color light-gray
+
+#home2
+  background-color #808080
+
+#home3
+  background-color light-gray
+
+.home-page-1
+  margin-bottom - space*.3
+
+// .home-text
+//   position absolute
+//   color white
+//   top "calc(50% - (%s * 3))" % space
+//   left "calc(50% - (%s * 10))" % space
+
+.explore
+  position inherit
+  top "calc(100% - (%s * 5))" % space
+  left 50%
+
+.home-arrow
+  height space*4
+  width space*4
+  position absolute
+  margin-left - space*2
+
+.home-iphone
+  margin-right space*8
+  margin-top - space*5
+  @media screen and (max-width: 768px)
+    margin-top 0
+
+.home-content
+  position absolute
+  width 100%
+  height 100%
+  color white
+  display table
+
+.home-middle
+  display table-cell
+  vertical-align middle
+
+.home-inner
+  width "calc(100% - (%s * 0))" % space
+
+.gears
+  z-index -1
+  fill dark-gray
+  position absolute
+  padding 0
+  height 100%
+  width 100%
+  visibility hidden
+
+.gear
+  opacity 0
+  padding 0
+
+// Doesn't work for IE at all :/
+// .rotate
+//   transform-origin 180px 180px
+//   &.clockwise
+//     animation clockwise 10s linear infinite
+//   &.counterclockwise
+//     animation counterclockwise 10s linear infinite
+//
+// @keyframes clockwise
+//   from
+//     transform rotate(0deg)
+//   to
+//     transform rotate(360deg)
+//
+// @keyframes counterclockwise
+//   from
+//     transform rotate(0deg)
+//   to
+//     transform rotate(-360deg)
+
+
+
+
+// #home-1
+//   background-color pastel-blue
+//
+// #home-2
+//   background-color pastel-red
+//
+// #home-3
+//   background-color pastel-blue
+//
+// #home-4
+//   background-color pastel-red
+
+
+/*------------ Parallax Effect ------------*/
+
+.home-outer
+  width 100%
+  height 100%
+  background-color black
+  overflow-y scroll
+  position fixed
+
+.parallax
+  overflow hidden
+  height 100vh
+  perspective 1px
+  scroll-behavior smooth
+  background-color black
+  z-index 2
+
+.parallax__group
+  position relative
+  height 100vh
+  transform-style: preserve-3d;
+
+.group-large
+  height 135vh
+
+.parallax__layer
+  position absolute
+  top 0
+  left 0
+  right 0
+  bottom 0
+  // min-height 400px
+  // background-position top center
+  // background-repeat no-repeat
+
+// .parallax-bg
+//   height 50%
+
+.parallax__layer--wrapper
+  bottom 0
+  left 0
+  overflow hidden
+  position fixed
+  right 0
+  top 0
+
+.text-shadow
+  text-shadow: 2px 2px medium-gray
+  color white
+
+.parallax__layer--base
+  transform translateZ(0)
+  z-index 4
+
+.parallax__layer--back
+  transform translateZ(-1px) scale(2)
+  z-index 3
+  margin-left -5px
+
+.parallax__layer--deep
+  transfrom translateZ(-2px) scale(3)
+  z-index 2
+
+.inner-home
+  position absolute
+  left 50%
+  top 50%
+  color white
+  font-size space*2
+  text-align center
+  transform translate(-50%, -50%)
+  z-index 2
+  .left
+    left 0
+    padding-left space*2
+
+.inner-home-base
+  position absolute
+  top 50%
+  width 100%
+  font-size space*2
+  padding-left space*5
+  padding-right space*5
+
+.home-base-inner
+  position relative
+  float left
+  text-align center
+  box-sizing border-box
+
+.parallax-img
+  filter blur(2px)
+  transition all .5s ease-in-out
+  height 100%
+
+.home-explore
+  padding-top space*2
+  position fixed
+  color white !important
+  text-align center
+  font-size space*1.8
+  z-index 100
+  top 60%
+  width 100%
+  line-height 100%
+
+.explore-link
+  position relative
+  color pastel-blue !important
+  z-index 100
+
+// .home-content
+//   position fixed
+//   top 0
+//   left 0
+//   width 100vw
+//   height 100vh
+
+.slide-left
+  position absolute
+  width 0
+  height 0
+  border-left 100vw solid black
+  border-top 100vh solid transparent
+  text-align left
+  color white
+  opacity 0
+  visibility hidden
+
+.slide-right
+  position absolute
+  width 0
+  height 0
+  border-right 100vw solid white
+  border-bottom 100vh solid transparent
+  text-align right
+  color black
+  opacity 0
+  visibility hidden
+
+.content1
+  position absolute
+  right 100%
+  width 100%
+  height 100%
+  background-color black
+
+.centered-line
+  position absolute
+  width 0
+  height 0
+  box-sizing border-box
+  margin-top space
+  margin-left 5%
+  border-bottom 1px solid white
+
+// .home-title, .home-typed-outer
+//   position absolute
+//   font-size space*3
+//   opacity 0
+//   width 100%
+//   color white
+//   margin-top space*10
+//   text-align center
+
+#home-title, #home-text
+  width 100%
+  text-align center
+  box-sizing border-box
+  position absolute
+  right 100%
+  opacity 0
+
+#home-title
+  margin-top - space*3
+  font-size space*2
+
+#home-text
+  margin-top space*2
+  font-size space*1.5
+
+.home-typed-outer
+  margin-top space*20
+
+.typed-cursor
+  opacity: 1;
+  animation: blink 0.7s infinite;
+
+@keyframes blink
+  0% { opacity:1; }
+  50% { opacity:0; }
+  100% { opacity:1; }
+
+.scroll-down
+  width space*8
+  box-sizing border-box
+  position absolute
+  color white
+  left "calc(50% - (%s * 4))" % space
+  top "calc(100% - (%s * 4))" % space
+  z-index 2
+
+.full-page
+  position fixed
+  top 0
+  width 100%
+  height 100%
+  text-align left
+  background-color black
+  z-index 3
+  font-size space*4
+  color white
+  line-height 100vh
+  padding-left space*2
+
+.left-menu
+  color white
+  height space*8
+  position absolute
+  left - space*6
+  width space*6
+  top "calc(50% - (%s * 4))" % space
+
+  .item1, .item2, .item3, .item4
+    height space*2
+    width space*6
+    font-size space
+    line-height space*2
+    position relative
+    float left
+    cursor pointer
