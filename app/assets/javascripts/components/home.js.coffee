@@ -12,9 +12,6 @@ React = require 'react'
     line: null
     topNav: null
     onWheel: null
-    gear1: null
-    gear2: null
-    gear3: null
     direction: 'next'
 
   componentDidMount: ->
@@ -39,11 +36,11 @@ React = require 'react'
     @setState topNav: TweenLite.to('.top-nav', .7,
       {opacity: 1, paused: yes, delay: .3}, ease: Expo.easeInOut)
     @setState gear1: TweenMax.to('#gear1', 20,
-      {rotationZ: "360deg", repeat: -1, transformOrigin:"180px 180px", paused: yes}, ease:Linear)
+      {rotationZ: "180deg", repeat: -1, transformOrigin:"180px 180px", paused: yes}, ease:Expo.easeInOut)
     @setState gear2: TweenMax.to('#gear2', 20,
-      {rotationZ: "-360deg", repeat: -1, transformOrigin:"180px 180px", paused: yes}, ease:Linear)
+      {rotationZ: "-180deg", repeat: -1, transformOrigin:"180px 180px", paused: yes}, ease:Expo.easeInOut)
     @setState gear3: TweenMax.to('#gear3', 20,
-      {rotationZ: "360deg", repeat: -1, transformOrigin:"180px 180px", paused: yes}, ease:Linear)
+      {rotationZ: "180deg", repeat: -1, transformOrigin:"180px 180px", paused: yes}, ease:Expo.easeInOut)
     @animatePage 'next'
 
   componentWillUnmount: ->
@@ -121,6 +118,7 @@ React = require 'react'
     ), 4000
 
   playGears: ->
+    TweenLite.to('.gears', 0, {visibility: 'visible'})
     TweenLite.to('.gear', .6, {opacity: .8, delay: .5}, ease:Linear.easeInOut)
     @state.gear1.play()
     @state.gear2.play()
@@ -128,6 +126,7 @@ React = require 'react'
 
   pauseGears: ->
     TweenLite.to('.gear', .4, {opacity: 0})
+    TweenLite.to('.gears', .4, {visibility: 'hidden'})
     @state.gear1.pause()
     @state.gear2.pause()
     @state.gear3.pause()
@@ -162,7 +161,7 @@ React = require 'react'
       @animatePageZero()
 
   render: ->
-    {a, div, img, svg, g, path, video, source, p, span} = React.DOM
+    {a, div, img, svg, g, path, video, source, p, span, canvas} = React.DOM
     div
       className: 'home-outer'
       React.createElement TopNav, null
@@ -175,6 +174,7 @@ React = require 'react'
         alt: 'Scroll Down'
         onClick: => @incrementPage()
       div className: 'gears',
+      # Use the timeline and stagger in order to make it faster!
         svg
           version: "1.1"
           className: 'gear'

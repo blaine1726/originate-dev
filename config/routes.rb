@@ -34,6 +34,8 @@ Rails.application.routes.draw do
 
   get 'contact', to: 'contact#index'
 
+  get 'timeline', to: 'timeline_component#index'
+
   match "/404", :to => "errors#not_found", :via => :all
 
   match "/500", :to => "errors#internal_server_error", :via => :all
