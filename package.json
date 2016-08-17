@@ -4,6 +4,7 @@
     "browserify": "~10.2.4",
     "browserify-incremental": "^3.0.1",
     "coffeeify": "~0.6",
+    "html-to-react": "^1.0.0",
     "react": ">=0.13.3",
     "react-markdown": "^2.3.0",
     "react-marked": "^0.3.1",

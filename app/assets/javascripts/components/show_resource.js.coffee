@@ -1,7 +1,31 @@
 React = require 'react'
 ReactMarkdown = React.createFactory(require('react-markdown'))
+markdown = require('markdown').markdown
+marked = require 'marked'
+highlight = require 'highlight.js'
+setHighlight: (code) ->
+  highlight.highlightAuto(code).value
+
+marked.setOptions({
+  renderer: new marked.Renderer(),
+  gfm: true,
+  tables: true,
+  breaks: false,
+  pedantic: false,
+  sanitize: true,
+  smartLists: true,
+  smartypants: false
+  highlight: @setHighlight
+})
 
 @ShowResource = React.createClass
+  getInitialState: ->
+    readme: null
+
+  componentDidMount: ->
+    md = markdown.toHTML @props.resource.readme
+    @setState readme: marked @props.resource.readme
+
   render: ->
     {a, div, img} = React.DOM
     div className: 'show-outer',
@@ -27,9 +51,12 @@ ReactMarkdown = React.createFactory(require('react-markdown'))
         #     src: @props.resource.background
         #   div className: 'show-description',
         #     div className: 'long-desc', @props.resource.long_description
-        ReactMarkdown
+        div
           className: 'readme'
-          source: @props.resource.readme
+          dangerouslySetInnerHTML: {__html: @state.readme}
+        # ReactMarkdown
+        #   className: 'readme'
+        #   source: @props.resource.readme
 
 module.exports = @ShowResource
 

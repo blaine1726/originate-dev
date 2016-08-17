@@ -6,4 +6,6 @@ class ResourcesController < ApplicationController
   def show
     @resource = Resource.find_by id: params[:id]
   end
+  def resource
+  end
 end

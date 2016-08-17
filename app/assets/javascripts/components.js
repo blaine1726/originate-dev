@@ -16,6 +16,7 @@ window.Logo = require('./components/logo');
 window.NavTile = require('./components/nav_tile');
 window.PeopleTile = require('./components/people_tile');
 window.People = require('./components/people');
+window.Resource = require('./components/resource');
 window.Resources = require('./components/resources');
 window.ResourceTile = require('./components/resource_tile');
 window.ShowResource = require('./components/show_resource');
