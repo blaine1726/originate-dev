@@ -46,6 +46,8 @@ input
   padding-left main-padding
   padding-right main-padding
   transition all .5s ease
+  max-width 1024px
+  margin 0 auto
   @media only screen and (max-width: 1200px)
     padding-right "calc(%s / 2)" % main-padding
     padding-left "calc(%s / 2)" % main-padding
@@ -805,6 +807,7 @@ input
 
 .padded-2
   padding space*2
+  box-sizing border-box
 
 .padded-3
   padding space*3

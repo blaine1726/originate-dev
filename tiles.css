@@ -1,0 +1,615 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+/*-------- Generic Tile Content --------*/
+.left-image {
+	position: relative;
+	float: left;
+	height: 15rem;
+	width: 15rem;
+	max-height: 100%;
+}
+
+@media screen and (max-width: 768px) {
+	.left-image {
+		width: 0;
+		height: 0;
+	}
+}
+
+.contact-us {
+	width: 100%;
+	height: 10rem;
+	line-height: 10rem;
+	border: 2px solid #a6a6a6;
+	text-align: center;
+	font-size: 1.5rem;
+}
+
+.fullscreen-bg {
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	overflow: hidden;
+  position: absolute;
+}
+
+.fullscreen-bg iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: auto;
+	height: calc(100% + 20px);
+}
+
+.fullscreen-bg__video {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+}
+
+.bg-gif {
+	position: absolute;
+	min-width: 100%;
+	min-height: 100%;
+	max-width: 100%;
+	/*display: block;*/
+	margin: auto;
+}
+
+.blur {
+	filter: blur(3px);
+	-webkit-filter: blur(3px);
+}
+/*-------- End Generic Tile Content --------*/
+.tile-container {
+	z-index: -1;
+	position: static;
+	overflow: hidden;
+  box-sizing: border-box;
+	transition: all 0.25s ease-in-out;
+}
+
+.tile-primary-content,
+.tile-secondary-content {
+	font-family: originate-circular-book;
+	font-weight: lighter;
+	position: absolute;
+	transition: all 0.25s ease-in-out;
+	width: calc(100% - 1.2rem * 4);
+	height: calc(100% - 1.2rem * 8);
+	font-size: 1rem;
+	padding-top: 0.8rem;
+}
+
+.tile-primary-content.inner-paragraph,
+.tile-secondary-content.inner-paragraph {
+	width: 100%;
+	height: 100%;
+}
+
+.tile-secondary-content {
+	margin-left: 100%;
+}
+
+.tile-sliding-content {
+	overflow: hidden;
+}
+
+.main-tile {
+	padding-bottom: calc((9 / 16) * ((200% / 3) - 1.6rem));
+	height: 0px;
+	float: left;
+	text-align: left;
+	overflow: hidden;
+	box-sizing: border-box;
+	transition: box-shadow, opacity 0.25s ease-in-out;
+	cursor: pointer;
+}
+
+.main-tile:hover,
+.main-tile:focus,
+.main-tile:active {
+	opacity: 0.8 !important;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.main-tile:hover .tile-primary-content,
+.main-tile:focus .tile-primary-content,
+.main-tile:active .tile-primary-content {
+	margin-left: -150%;
+	visibility: hidden;
+}
+
+.main-tile:hover .tile-secondary-content,
+.main-tile:focus .tile-secondary-content,
+.main-tile:active .tile-secondary-content {
+	margin-left: 0;
+	visibility: visible;
+}
+
+.tile-title {
+	font-weight: bold;
+	font-size: 1.5rem;
+	z-index: 4;
+	text-shadow: 0.5px 0.5px #a6a6a6;
+}
+/*-------- Tile Proportionalities --------*/
+.tile-half,
+.tile-third,
+.tile-two-thirds,
+.tile-fourth,
+.tile-three-fourths,
+.tile-full,
+.tile-tall {
+	margin: 0.8rem;
+	box-sizing: border-box;
+	height: 0px;
+	position: relative;
+}
+
+.tile-half:hover,
+.tile-third:hover,
+.tile-two-thirds:hover,
+.tile-fourth:hover,
+.tile-three-fourths:hover,
+.tile-full:hover,
+.tile-tall:hover {
+	opacity: 0.8;
+}
+
+.tile-half {
+	width: calc(50% - (0.8rem * 2));
+}
+
+.tile-third {
+	width: calc((100% / 3) - (0.8rem * 2));
+}
+
+.tile-two-thirds {
+	width: calc((200% / 3) - (0.8rem * 2));
+}
+
+.tile-fourth {
+	width: calc((100% / 4) - (0.8rem * 2));
+}
+
+.tile-three-fourths {
+	width: calc((300% / 4) - (0.8rem * 2));
+}
+
+.tile-full,
+.tile-tall {
+	width: calc(100% - (0.8rem * 2));
+}
+
+.tile-home {
+	width: 40rem;
+	height: 50rem;
+	margin: 2rem;
+}
+/*-------- End Tile Proportionalities --------*/
+/*-------- Column Data --------*/
+.column-half,
+.column-third,
+.column-two-thirds {
+	position: relative;
+	float: left;
+  box-sizing: border-box;
+}
+
+.column-half .tile-half,
+.column-third .tile-half,
+.column-two-thirds .tile-half,
+.column-half .tile-third,
+.column-third .tile-third,
+.column-two-thirds .tile-third,
+.column-half .tile-two-thirds,
+.column-third .tile-two-thirds,
+.column-two-thirds .tile-two-thirds,
+.column-half .tile-fourth,
+.column-third .tile-fourth,
+.column-two-thirds .tile-fourth,
+.column-half .tile-three-fourths,
+.column-third .tile-three-fourths,
+.column-two-thirds .tile-three-fourths,
+.column-half .tile-full,
+.column-third .tile-full,
+.column-two-thirds .tile-full {
+	padding-bottom: calc((9 / 16) * ((200vw / 3) - 1.6rem));
+}
+
+.column-half .tile-tall,
+.column-third .tile-tall,
+.column-two-thirds .tile-tall {
+	padding-bottom: calc((((9 / 16) * ((200vw / 3) - 1.6rem)) * 2) + 1.6rem - .1px);
+}
+
+@media screen and (max-width: 768px) {
+	.column-half,
+  .column-third,
+  .column-two-thirds {
+		margin: 0;
+		width: 100%;
+		float: none;
+	}
+
+	.column-half .tile-half,
+  .column-third .tile-half,
+  .column-two-thirds .tile-half,
+  .column-half .tile-third,
+  .column-third .tile-third,
+  .column-two-thirds .tile-third,
+  .column-half .tile-two-thirds,
+  .column-third .tile-two-thirds,
+  .column-two-thirds .tile-two-thirds,
+  .column-half .tile-fourth,
+  .column-third .tile-fourth,
+  .column-two-thirds .tile-fourth,
+  .column-half .tile-three-fourths,
+  .column-third .tile-three-fourths,
+  .column-two-thirds .tile-three-fourths,
+  .column-half .tile-full,
+  .column-third .tile-full,
+  .column-two-thirds .tile-full,
+  .column-half .tile-tall,
+  .column-third .tile-tall,
+  .column-two-thirds .tile-tall {
+		margin-top: 0.8rem;
+		margin-bottom: 0.8rem;
+	}
+}
+
+.column-half {
+	width: 50%;
+}
+
+.column-third {
+	width: calc(100% / 3);
+}
+
+.column-two-thirds {
+	width: calc(200% / 3);
+}
+/*-------- End Column Data --------*/
+/*-------- Responsiveness --------*/
+/* ----------- Responsive laptop: 768px ----------- */
+@media only screen and (max-device-width: 768px), only screen and (max-width: 768px) {
+	.column-half,
+  .column-third,
+  .column-two-thirds {
+		margin: 0;
+		height: wrap-content;
+		width: 100%;
+		float: none;
+	}
+
+	.tile-half,
+  .tile-third,
+  .tile-two-thirds,
+  .tile-fourth,
+  .tile-three-fourths,
+  .tile-full,
+  .tile-tall {
+		width: 100%;
+		margin: 1rem 0 1rem 0;
+	}
+
+	.tile-full {
+		min-height: calc((9 / 21) * 100vw);
+	}
+
+	.tile-third,
+  .tile-half {
+		min-height: calc((3 / 4) * 100vw);
+	}
+
+	.tile-three-fourths,
+  .tile-two-thirds {
+		min-height: calc((9 / 16) * 100vw);
+	}
+
+	.tile-fourth {
+		min-height: 100vw;
+	}
+
+	.first-element {
+		margin-top: 2rem;
+	}
+
+	.tile-container {
+		padding: 0 1rem 0 1rem;
+		margin: 0;
+		position: static;
+		background-color: #f2f2f2;
+		box-sizing: border-box;
+	}
+
+	.home-container {
+		margin: 0;
+		padding: 0;
+	}
+
+	.inner-paragraph {
+		font-size: 2.1rem;
+	}
+
+	.tile-title {
+		font-size: 2.5rem;
+	}
+
+	.small-header {
+		height: 7rem;
+		font-size: 1.7rem;
+	}
+
+	.small-header .logo-small {
+		height: 4.5rem;
+		margin-right: -10rem;
+		padding-top: 0.5rem;
+	}
+
+	.small-header .contact-button {
+		padding-top: 1.5rem;
+		width: 10rem;
+	}
+
+	.menu-container {
+		max-height: 4rem;
+		width: 100%;
+		position: relative;
+		overflow: auto;
+		margin-bottom: 1rem;
+	}
+
+	.menu-inner {
+		width: 84rem;
+	}
+
+	.menu-option {
+		position: relative;
+		float: left;
+		margin: 0;
+		padding: 0;
+		width: 14rem;
+		height: 4rem;
+		font-size: 1.4rem;
+		font-weight: lighter;
+		line-height: 4rem;
+		border: none;
+	}
+
+	.page-title {
+		margin-top: 4rem;
+	}
+
+	.people-tile {
+		width: 100%;
+		padding: 1rem;
+	}
+
+	.padded-container-small,
+  .padded-container {
+		padding-left: 1rem;
+		padding-right: 1rem;
+	}
+}
+/*-------- Flip Container --------*/
+.flip-container {
+	perspective: 1000;
+  width: 100%;
+  height: 100%;
+}
+
+.flip-container.selected .flipper {
+	transform: rotateY(180deg);
+}
+
+.flip-container,
+.front,
+.back {
+	height: 427px;
+}
+
+.flipper {
+	transition: 0.6s;
+	transform-style: preserve-3d;
+	position: relative;
+}
+
+.front,
+.back {
+	backface-visibility: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.front {
+	background: url("http://davidwalsh.name/demo/dwflip.jpg") 0 0 no-repeat;
+	z-index: 2;
+}
+
+.back {
+	transform: rotateY(180deg);
+	background: #f8f8f8;
+}
+
+.front .name {
+	font-size: 2em;
+	display: inline-block;
+	background: rgba(33,33,33,0.9);
+	color: #f8f8f8;
+	font-family: Courier;
+	padding: 5px 10px;
+	border-radius: 5px;
+	bottom: 60px;
+	left: 25%;
+	position: absolute;
+	text-shadow: 0.1em 0.1em 0.05em #333;
+	transform: rotate(-20deg);
+}
+
+.back-logo {
+	position: absolute;
+	top: 40px;
+	left: 90px;
+	width: 160px;
+	height: 117px;
+	background: url("http://davidwalsh.name/demo/logo.png") 0 0 no-repeat;
+}
+
+.back-title {
+	font-weight: bold;
+	color: #00304a;
+	position: absolute;
+	top: 180px;
+	left: 0;
+	right: 0;
+	text-align: center;
+	text-shadow: 0.1em 0.1em 0.05em #acd7e5;
+	font-family: Courier;
+	font-size: 2em;
+}
+
+.back p {
+	position: absolute;
+	bottom: 40px;
+	left: 0;
+	right: 0;
+	text-align: center;
+	padding: 0 20px;
+	font-family: arial;
+	line-height: 2em;
+}
+/*-------- Responsiveness --------*/
+
+/* Finishing CSS Attributes */
+.white {
+	color: #fff;
+}
+
+.padded-1 {
+	padding: 1rem;
+}
+
+.padded-2 {
+	padding: 2rem;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  box-sizing: border-box;
+}
+
+.padded-3 {
+	padding: 3rem;
+}
+
+.clickable {
+	cursor: pointer;
+}
+
+.text-right {
+	text-align: right;
+}
+
+.follow-banner {
+	font-size: 2.2rem;
+	height: 12rem;
+	line-height: 12rem;
+	vertical-align: middle;
+	background-color: #0d0d0d;
+	color: #0d0d0d;
+}
+
+.follow-title {
+	color: #fff;
+	float: left;
+	margin-left: 2rem;
+	font-size: 2.2rem;
+	margin-right: 3rem;
+}
+
+.follow-input {
+	width: 25rem;
+	border: 1px solid #d3d3d3;
+	height: 3rem;
+	font-size: 2rem;
+	float: right;
+	padding: 1rem;
+	margin-top: 4.5rem;
+}
+
+.subscribe-outer {
+	margin-right: 2rem;
+}
+
+.follow-sub {
+	background-color: #737373;
+	float: right;
+	color: #fff;
+	height: 3rem;
+	line-height: 3rem;
+	margin-top: 4.5rem;
+	padding-left: 2rem;
+	padding-right: 2rem;
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.white-bg {
+	background-color: #fff;
+}
+
+.black-bg {
+	background-color: #000;
+	color: #fff;
+}
+
+.divider {
+	border-bottom: 2px solid #a6a6a6;
+}
+
+.centered-content {
+	text-align: center;
+	vertical-align: middle;
+	line-height: 100%;
+}
+
+.full-width {
+	width: 100%;
+}
+
+.full-height {
+	height: 100%;
+}
+
+.padding-bottom {
+	padding-bottom: 1rem;
+}
+
+.border {
+	border: 1px solid #a6a6a6;
+}
+
+.hidden {
+	visibility: hidden;
+	padding: 0;
+	margin: 0;
+	height: 0;
+	width: 0;
+}

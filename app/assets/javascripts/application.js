@@ -48,7 +48,7 @@
           compareTop    = partial === true ? _bottom : _top,
           compareBottom = partial === true ? _top : _bottom;
 
-    return ((compareBottom <= viewBottom) && (compareTop >= viewTop));
+    return ((compareBottom <= viewBottom));
 
   };
 

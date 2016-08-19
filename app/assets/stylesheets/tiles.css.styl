@@ -91,16 +91,15 @@
   overflow hidden
 
 .main-tile
-  padding-bottom 30%
+  padding-bottom calc((9 / 16) * ((200% / 3) - 1.6rem))
   height 0px
   float left
   text-align left
   overflow hidden
-  box-sizing border-box
   transition box-shadow, opacity 0.25s ease-in-out
   cursor pointer
   &:hover, &:focus, &:active
-    opacity .8 !important
+    opacity .8
     box-shadow 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
     .tile-primary-content
       margin-left -150%
@@ -120,7 +119,6 @@
 .tile-half, .tile-third, .tile-two-thirds, .tile-fourth, .tile-three-fourths,
 .tile-full, .tile-tall
   margin space-small
-  box-sizing border-box
   height 0px
   position relative
   &:hover
@@ -156,13 +154,11 @@
 .column-half, .column-third, .column-two-thirds
   position relative
   float left
-  height wrap-content
-  margin-bottom space*2
   .tile-half, .tile-third, .tile-two-thirds, .tile-fourth,
   .tile-three-fourths, .tile-full
-    padding-bottom 45% //TODO this is a magic number... change later
+    padding-bottom calc((9 / 16) * ((300% / 3) - 1.6rem))
   .tile-tall
-    padding-bottom "calc(180% + (%s * 2))" % space-small
+    padding-bottom calc((((9 / 16) * ((600% / 3) - 1.6rem)) * 2) + 1.6rem - .1px)
   @media screen and (max-width: 768px)
     margin 0
     width 100%

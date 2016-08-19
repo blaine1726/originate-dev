@@ -1,0 +1,328 @@
+<!doctype html>
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Originate Tiles</title>
+  <meta name="description" content="Originate Tiles">
+  <meta name="author" content="Blaine Muri">
+
+  <!-- Import JQuery and the animations javascript files -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="animations.js"></script>
+
+  <!-- Tile styling -->
+  <link rel="stylesheet" href="tiles.css">
+  <link rel="stylesheet" href="animations.css">
+
+  <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+  <div class="tile-container">
+
+    <div class="main-tile tile-half animate first-element">
+      <!-- Sets the perspective to be able to flip the tile -->
+      <!-- Background -->
+      <div class="fullscreen-bg">
+        <!-- Background can be an image or a gif -->
+        <img class="bg-gif" src="half.png" alt="1/2 tile" />
+      </div>
+      <!-- Main content - slides left and right - padded 2rem -->
+      <div class="padded-2">
+        <div class="tile-title">Tile Half</div>
+        <div class="tile-sliding-content">
+          <div class="tile-primary-content"><p class="inner-paragraph">
+            Primary Content
+          </p></div>
+          <div class="tile-secondary-content"><p class="inner-paragraph">
+            Secondary Content
+          </p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Copy of the above tile - you can even change the text color -->
+    <div class="main-tile tile-half animate white">
+      <div class="fullscreen-bg">
+        <img class="bg-gif" src="half.png" alt="1/2 tile" />
+      </div>
+      <div class="padded-2">
+        <div class="tile-title">Tile Half</div>
+        <div class="tile-sliding-content">
+          <div class="tile-primary-content"><p class="inner-paragraph">
+            Primary Content
+          </p></div>
+          <div class="tile-secondary-content"><p class="inner-paragraph">
+            Secondary Content
+          </p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-tile tile-third animate white">
+      <div class="fullscreen-bg">
+        <img class="bg-gif" src="third.png" alt="Third" />
+      </div>
+      <div class="padded-2">
+        <div class="tile-title">Tile Third</div>
+        <div class="tile-sliding-content">
+          <div class="tile-primary-content"><p class="inner-paragraph">
+            Primary Content
+          </p></div>
+          <div class="tile-secondary-content"><p class="inner-paragraph">
+            Secondary Content
+          </p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-tile tile-two-thirds animate white">
+      <div class="fullscreen-bg">
+        <img class="bg-gif" src="twothirds.png" alt="Two Thirds" />
+      </div>
+      <div class="padded-2">
+        <div class="tile-title">Tile Two-Thirds</div>
+        <div class="tile-sliding-content">
+          <div class="tile-primary-content"><p class="inner-paragraph">
+            Primary Content
+          </p></div>
+          <div class="tile-secondary-content"><p class="inner-paragraph">
+            Secondary Content
+          </p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-tile tile-three-fourths animate white">
+      <div class="fullscreen-bg">
+        <img class="bg-gif" src="threefourths.png" alt="Three Fourths" />
+      </div>
+      <div class="padded-2">
+        <div class="tile-title">Tile Three Fourths</div>
+        <div class="tile-sliding-content">
+          <div class="tile-primary-content"><p class="inner-paragraph">
+            Primary Content
+          </p></div>
+          <div class="tile-secondary-content"><p class="inner-paragraph">
+            Secondary Content
+          </p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-tile tile-fourth animate white">
+      <div class="fullscreen-bg">
+        <img class="bg-gif" src="fourth.png" alt="Fourth" />
+      </div>
+      <div class="padded-2">
+        <div class="tile-title">Tile Fourth</div>
+        <div class="tile-sliding-content">
+          <div class="tile-primary-content"><p class="inner-paragraph">
+            Primary Content
+          </p></div>
+          <div class="tile-secondary-content"><p class="inner-paragraph">
+            Secondary Content
+          </p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-tile tile-full animate white">
+      <div class="fullscreen-bg">
+        <img class="bg-gif" src="full.png" alt="Full" />
+      </div>
+      <div class="padded-2">
+        <div class="tile-title">Tile Full</div>
+        <div class="tile-sliding-content">
+          <div class="tile-primary-content"><p class="inner-paragraph">
+            Primary Content
+          </p></div>
+          <div class="tile-secondary-content"><p class="inner-paragraph">
+            Secondary Content
+          </p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- You can even have 3 or 4 tiles in one row! -->
+    <div class="main-tile tile-third animate white">
+      <div class="fullscreen-bg">
+        <img class="bg-gif" src="third.png" alt="Half" />
+      </div>
+      <div class="padded-2">
+        <div class="tile-title">Tile Half</div>
+        <div class="tile-sliding-content">
+          <div class="tile-primary-content"><p class="inner-paragraph">
+            Primary Content
+          </p></div>
+          <div class="tile-secondary-content"><p class="inner-paragraph">
+            Secondary Content
+          </p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-tile tile-third animate white">
+      <div class="fullscreen-bg">
+        <img class="bg-gif" src="third.png" alt="Half" />
+      </div>
+      <div class="padded-2">
+        <div class="tile-title">Tile Half</div>
+        <div class="tile-sliding-content">
+          <div class="tile-primary-content"><p class="inner-paragraph">
+            Primary Content
+          </p></div>
+          <div class="tile-secondary-content"><p class="inner-paragraph">
+            Secondary Content
+          </p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-tile tile-third animate white">
+      <div class="fullscreen-bg">
+        <img class="bg-gif" src="third.png" alt="Half" />
+      </div>
+      <div class="padded-2">
+        <div class="tile-title">Tile Half</div>
+        <div class="tile-sliding-content">
+          <div class="tile-primary-content"><p class="inner-paragraph">
+            Primary Content
+          </p></div>
+          <div class="tile-secondary-content"><p class="inner-paragraph">
+            Secondary Content
+          </p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notice that you can create columns of height 2 to orient the tiles -->
+    <div class="column-third">
+      <div class="main-tile tile-tall animate white">
+        <div class="fullscreen-bg">
+          <img class="bg-gif" src="tall.png" alt="Tall" />
+        </div>
+        <div class="padded-2">
+          <div class="tile-title">Tile Tall</div>
+          <div class="tile-sliding-content">
+            <div class="tile-primary-content"><p class="inner-paragraph">
+              Primary Content
+            </p></div>
+            <div class="tile-secondary-content"><p class="inner-paragraph">
+              Secondary Content
+            </p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notice there are 3 tiles within this column. It needs to fill
+         all units in order to complete the column. -->
+    <div class="column-two-thirds">
+      <div class="main-tile tile-full animate white">
+        <div class="fullscreen-bg">
+          <img class="bg-gif" src="twothirds.png" alt="Full" />
+        </div>
+        <div class="padded-2">
+          <div class="tile-title">Tile Full</div>
+          <div class="tile-sliding-content">
+            <div class="tile-primary-content"><p class="inner-paragraph">
+              Primary Content
+            </p></div>
+            <div class="tile-secondary-content"><p class="inner-paragraph">
+              Secondary Content
+            </p></div>
+          </div>
+        </div>
+      </div>
+      <div class="main-tile tile-half animate white">
+        <div class="fullscreen-bg">
+          <img class="bg-gif" src="third.png" alt="Half" />
+        </div>
+        <div class="padded-2">
+          <div class="tile-title">Tile Half</div>
+          <div class="tile-sliding-content">
+            <div class="tile-primary-content"><p class="inner-paragraph">
+              Primary Content
+            </p></div>
+            <div class="tile-secondary-content"><p class="inner-paragraph">
+              Secondary Content
+            </p></div>
+          </div>
+        </div>
+      </div>
+      <div class="main-tile tile-half animate white">
+        <div class="fullscreen-bg">
+          <img class="bg-gif" src="third.png" alt="Half" />
+        </div>
+        <div class="padded-2">
+          <div class="tile-title">Tile Half</div>
+          <div class="tile-sliding-content">
+            <div class="tile-primary-content"><p class="inner-paragraph">
+              Primary Content
+            </p></div>
+            <div class="tile-secondary-content"><p class="inner-paragraph">
+              Secondary Content
+            </p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- You can even have 3 or 4 tiles in one row! -->
+    <div class="main-tile tile-third animate white">
+      <div class="fullscreen-bg">
+        <img class="bg-gif" src="third.png" alt="Half" />
+      </div>
+      <div class="padded-2">
+        <div class="tile-title">Tile Half</div>
+        <div class="tile-sliding-content">
+          <div class="tile-primary-content"><p class="inner-paragraph">
+            Primary Content
+          </p></div>
+          <div class="tile-secondary-content"><p class="inner-paragraph">
+            Secondary Content
+          </p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-tile tile-third animate white">
+      <div class="fullscreen-bg">
+        <img class="bg-gif" src="third.png" alt="Half" />
+      </div>
+      <div class="padded-2">
+        <div class="tile-title">Tile Half</div>
+        <div class="tile-sliding-content">
+          <div class="tile-primary-content"><p class="inner-paragraph">
+            Primary Content
+          </p></div>
+          <div class="tile-secondary-content"><p class="inner-paragraph">
+            Secondary Content
+          </p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-tile tile-third animate white">
+      <div class="fullscreen-bg">
+        <img class="bg-gif" src="third.png" alt="Half" />
+      </div>
+      <div class="padded-2">
+        <div class="tile-title">Tile Half</div>
+        <div class="tile-sliding-content">
+          <div class="tile-primary-content"><p class="inner-paragraph">
+            Primary Content
+          </p></div>
+          <div class="tile-secondary-content"><p class="inner-paragraph">
+            Secondary Content
+          </p></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
