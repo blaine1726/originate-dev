@@ -22,12 +22,12 @@
 
 //Background Video Styles
 .fullscreen-bg
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    overflow: hidden;
-    z-index -100
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  z-index -100
 
 .fullscreen-bg iframe
   position absolute
@@ -51,11 +51,24 @@
   min-width 100%
   min-height 100%
   max-width 100%
+  max-height 100%
   z-index -1
   display block
   margin auto
+  transition transform .3s ease
+  box-sizing border-box
+  backface-visibility hidden
+  transform-style preserve-3d
+  -webkit-backface-visibility hidden
+  -webkit-transform translate3d(0, 0, 0)
+  &.zoom
+    transform scale(1.1)
 
 .blur
+  backface-visibility hidden
+  -webkit-backface-visibility hidden
+  -webkit-transform translate3d(0, 0, 0)
+  transform scale(1) !important
   filter blur(3px)
   -webkit-filter blur(3px)
 
@@ -129,8 +142,10 @@
   overflow hidden
   transition box-shadow, opacity 0.25s ease-in-out
   cursor pointer
+  transform-styl preserve-3d
+  backface-visibility hidden
+  -webkit-transform translate3d(0, 0, 0)
   &:hover, &:focus, &:active
-    opacity .8
     box-shadow 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
     .tile-primary-content
       margin-left -150%
@@ -152,8 +167,6 @@
   margin space-small
   height 0px
   position relative
-  &:hover
-    opacity .8
 
 .tile-half
   width "calc(50% - (%s * 2))" % tile-padding

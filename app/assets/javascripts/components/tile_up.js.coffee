@@ -1,13 +1,23 @@
 React = require 'react'
 
 @TileUp = React.createClass
+  getInitialState: ->
+    hover: no
+
+  setActive: -> @setState hover: yes
+
+  setInactive: -> @setState hover: no
+
   render: ->
     {div, img, p} = React.DOM
     cssTitle = "main-tile #{@props.tileType} animate " + @props.customCSS
-    div className: "#{cssTitle}",
+    div
+      className: "#{cssTitle}"
+      onMouseEnter: => @setActive()
+      onMouseLeave: => @setInactive()
       div className: 'fullscreen-bg',
         img
-          className: 'bg-gif'
+          className: "bg-gif zoom #{'blur' if @state.hover}"
           src: @props.gif
       div className: 'slide-up-outer',
         div className: 'padded-1',
