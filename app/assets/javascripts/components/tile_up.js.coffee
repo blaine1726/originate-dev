@@ -17,7 +17,7 @@ React = require 'react'
       onMouseLeave: => @setInactive()
       div className: 'fullscreen-bg',
         img
-          className: "bg-gif zoom #{'blur' if @state.hover}"
+          className: "bg-gif zoom #{'scale-1' if @state.hover}"
           src: @props.gif
       div className: 'slide-up-outer',
         div className: 'padded-1',
