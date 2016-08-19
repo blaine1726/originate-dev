@@ -24,4 +24,5 @@ window.Solutions = require('./components/solutions');
 window.Technology = require('./components/technology');
 window.TimelineComponent = require('./components/timeline_component');
 window.Tile = require('./components/tile');
+window.TileUp = require('./components/tile_up');
 window.TopNav = require('./components/top_nav');

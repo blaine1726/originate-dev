@@ -15,10 +15,10 @@ React = require 'react'
     customCSS2 = ""
     if @state.menuActive
       customCSS = 'header-links show-menu'
-      customCSS2 = 'tile-container show-menu'
+      customCSS2 = 'tile-container no-padding'
     else
       customCSS = 'header-links hide-menu'
-      customCSS2 = 'tile-container'
+      customCSS2 = 'tile-container no-padding'
     {div} = React.DOM
     div {},
       div className: 'home-container',
@@ -28,6 +28,18 @@ React = require 'react'
             active: 'Design'
             header: @props.quote.quote
         div className: customCSS2,
+          React.createElement TileUp,
+            name: 'Tile Up'
+            tileType: 'tile-third'
+            gif: @props.assets.third
+          React.createElement TileUp,
+            name: 'Tile Up'
+            tileType: 'tile-third'
+            gif: @props.assets.third
+          React.createElement TileUp,
+            name: 'Tile Up'
+            tileType: 'tile-third'
+            gif: @props.assets.third
           React.createElement Tile,
             name: 'Featured Product'
             customCSS: 'white first-element'

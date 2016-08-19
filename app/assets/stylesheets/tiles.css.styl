@@ -64,12 +64,15 @@
 
 .tile-container
   width 100%
-  position relative
   padding-top space
   z-index -1
   position static
   overflow hidden
   transition all 0.25s ease-in-out
+  &.no-padding
+    width "calc(100% + (%s * 2))" % space-small
+    margin-left - space-small
+    overflow-x hidden
 
 .tile-primary-content, .tile-secondary-content
   font-family originate-circular-book
@@ -89,6 +92,34 @@
 
 .tile-sliding-content
   overflow hidden
+
+.main-tile
+  &:hover
+    .slide-up-outer
+      height 67%
+      top 33%
+  .slide-up-outer
+    position absolute
+    box-sizing border-box
+    width 100%
+    height 33%
+    background-color white
+    top 67%
+    transition all .3s ease-in-out
+    border 1px solid light-gray
+
+.slide-up-title
+  width 100%
+  float left
+  font-size space*1.3
+  line-height space*1.3
+  padding-bottom space-small
+
+.slide-up-about
+  width 100%
+  float left
+  text-align left
+  font-size space*.8
 
 .main-tile
   padding-bottom calc((9 / 16) * ((200% / 3) - 1.6rem))
