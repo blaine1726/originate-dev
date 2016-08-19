@@ -2,6 +2,11 @@
 
 /*-------- Generic Tile Content --------*/
 
+p
+  overflow hidden
+  text-overflow ellipsis
+  white-space nowrap
+
 .left-image
   position relative
   float left
@@ -107,6 +112,9 @@
     .slide-up-outer
       height 67%
       top 33%
+      .padded-1
+        .slide-up-about
+            white-space normal
   .slide-up-outer
     position absolute
     box-sizing border-box
@@ -126,6 +134,7 @@
 
 .slide-up-about
   width 100%
+  height "calc(100% - (%s * 1.3) - %s)" % (space space-small)
   float left
   text-align left
   font-size space*.8
