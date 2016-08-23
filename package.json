@@ -4,6 +4,8 @@
     "browserify": "~10.2.4",
     "browserify-incremental": "^3.0.1",
     "coffeeify": "~0.6",
+    "google-auth-library": "^0.9.8",
+    "googleapis": "^12.3.0",
     "html-to-react": "^1.0.0",
     "react": ">=0.13.3",
     "react-markdown": "^2.3.0",

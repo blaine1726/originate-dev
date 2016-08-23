@@ -2,6 +2,7 @@
 window.Animations = require('./components/animations');
 window.BannerTile = require('./components/banner_tile');
 window.Careers = require('./components/careers');
+window.Chatbot = require('./components/chatbot');
 window.Contact = require('./components/contact');
 window.Design = require('./components/design');
 window.Dropdown = require('./components/dropdown');
