@@ -45,6 +45,11 @@ gem 'threejs-rails', git: 'git://github.com/marvindanig/threejs-rails.git'
 gem 'marked-rails'
 # Browserify support to use npm modules
 gem 'browserify-rails'
+
+gem 'net'
+
+gem 'rest-client'
+
 # # Make America Great Again
 # gem 'make_america_great_again'
 
