@@ -2,6 +2,7 @@
 window.Animations = require('./components/animations');
 window.BannerTile = require('./components/banner_tile');
 window.Bot = require('./components/bot');
+window.BotMessage = require('./components/bot_message');
 window.Careers = require('./components/careers');
 window.Chatbot = require('./components/chatbot');
 window.ChatLog = require('./components/chat_log');
@@ -32,3 +33,4 @@ window.TimelineComponent = require('./components/timeline_component');
 window.Tile = require('./components/tile');
 window.TileUp = require('./components/tile_up');
 window.TopNav = require('./components/top_nav');
+window.UserMessage = require('./components/user_message');

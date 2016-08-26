@@ -1,3 +1,6 @@
 <%= react_component 'ChatMenu',
   {active:'', chatbot:asset_path('chatbot.png')} %>
-<%= react_component 'Bot', {} %>
+<%= react_component 'Bot', {
+  chatbot:asset_path('chatbot.png'),
+  profile:asset_path('git.png')
+  } %>
