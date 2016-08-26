@@ -18,34 +18,36 @@ React = require 'react'
 
   getInitialState: ->
     context: {}
+    text: ""
 
-  askBot: (e) ->
+  handleSubmit: (e) ->
     e.preventDefault()
-    console.log @props.converse
-    # apiURL = "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/07e02c55-f1e9-4953-8cb2-e50bae764e3b/message?version=2016-07-11"
-    # client = RestClient::Resource
-    # query = document.getElementById('bot-query').value
-    # conversation.message {
-    #   input: "Hello"
-    #   workspace_id: '07e02c55-f1e9-4953-8cb2-e50bae764e3b'
-    # }, (err, response) =>
-    #   if (err)
-    #     console.log('error', err)
-    #   else
-    #     console.log JSON.stringify(response, null, 2)
+    $.ajax
+      url: '/chatbot'
+      data: {'query': {'input': {'text': @state.text}}}
+      method: 'POST'
+    .done (response) =>
+      @setState text: ""
+    .fail ->
+      alert 'Error sending message!'
+
+  handleChange: (e) -> @setState text: e.target.value
 
   render: ->
     {div, span, pre, button, input, form} = React.DOM
     div className: 'chat-container',
       form
         id: 'chatbot'
-        onSubmit: (e) => @askBot e
+        onSubmit: @handleSubmit
         input
           type: 'text'
           name: 'botquery'
           id: 'bot-query'
+          onChange: @handleChange
 
 module.exports = @Chatbot
+
+# GOOGLE CALENDAR API INFORMATION
 
 # checkAuth: ->
 #   gapi.auth.authorize {

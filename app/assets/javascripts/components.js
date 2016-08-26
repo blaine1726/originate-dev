@@ -1,8 +1,13 @@
 //= require_tree ./components
 window.Animations = require('./components/animations');
 window.BannerTile = require('./components/banner_tile');
+window.Bot = require('./components/bot');
 window.Careers = require('./components/careers');
 window.Chatbot = require('./components/chatbot');
+window.ChatLog = require('./components/chat_log');
+window.ChatLogin = require('./components/chat_login');
+window.ChatMenu = require('./components/chat_menu');
+window.ChatStats = require('./components/chat_stats');
 window.Contact = require('./components/contact');
 window.Design = require('./components/design');
 window.Dropdown = require('./components/dropdown');

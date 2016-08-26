@@ -1,4 +1,130 @@
 @import 'params.styl'
 
+nav-height = space*3
+header-font = space*1.1
+bright-blue = #96DDE1
+aq = #38c0c7
+dark-pastel-blue = #779ecb
+pastel-blue-1 = #7ea3ce
+pastel-blue-2 = #90b0d5
+pastel-blue-3 = #a3bddc
+pastel-blue-4 = #b5cae3
+
 .chat-container
   width 50%
+
+.chat-menu
+  width 100%
+  position relative
+  height nav-height
+  background-color dark-pastel-blue
+  line-height nav-height
+  font-size header-font
+  color #2a4a6f
+
+  .chat-btn
+    width space*10
+    height nav-height
+    float right
+    line-height nav-height
+    text-align center
+    box-sizing border-box
+    cursor pointer
+    transition background-color .2s ease-in-out
+    color #2a4a6f
+    &:nth-child(4)
+      background-color pastel-blue-1
+    &:nth-child(3)
+      background-color pastel-blue-2
+    &:nth-child(2)
+      background-color pastel-blue-3
+    &:nth-child(1)
+      background-color pastel-blue-4
+    &:hover
+      background-color bright-blue
+
+  .chat-logo
+    float left
+    width space*15
+    height nav-height
+
+    .chat-botler
+      width nav-height
+      height nav-height
+      float left
+
+    .chat-header
+      height nav-height
+      float right
+      width "calc(100% - %s)" % nav-height
+      padding-left space
+      box-sizing border-box
+
+.chat-login
+  width 100%
+  height 100%
+  position fixed
+  text-align center
+  background-color pastel-blue-4
+  animation fade-background 1.5s forwards
+  animation-delay .5s
+
+  .vertical-center
+    position absolute
+    top 50%
+    left 50%
+    transform translateY(-50%) translateX(-50%)
+
+    .inner-login
+      width space*20
+      padding 0
+      margin 0
+
+      .chat-logo
+        transform translateY(-20px)
+        animation move-down .6s forwards
+        z-index 1
+        width space*20
+        float left
+
+      .chat-login
+        transform translateY(-50px)
+        height nav-height
+        width space*20
+        left 0
+        box-sizing border-box
+        text-align center
+        animation move-login .6s forwards
+        float left
+        line-height nav-height
+        font-size header-font
+        border none
+        margin 0
+        padding 0
+        transition background-color .3s ease-in-out
+        cursor pointer
+        &:hover
+          background-color aq
+
+      .chat-logo, .chat-login
+        animation-delay .2s
+
+@keyframes move-login
+  from
+    transform translateY(-50px)
+    background-color pastel-blue-4
+  to
+    transform translateY(0px)
+    background-color bright-blue
+
+@keyframes move-down
+  from
+    transform translateY(-20px)
+  to
+    transform translateY(0px)
+
+@keyframes fade-background
+  from
+    background-color pastel-blue-4
+  to
+    background-color dark-pastel-blue

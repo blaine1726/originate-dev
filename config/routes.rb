@@ -40,7 +40,19 @@ Rails.application.routes.draw do
 
   get 'resource', to: 'resources#resource'
 
-  get 'chatbot', to: 'chatbot#index'
+  # resources :chats, only: [:index, :create] do
+
+  get 'chatbot/index', to: 'chatbot#index'
+
+  get 'chatbot', to: 'chatbot#login'
+
+  get 'chatbot/history', to: 'chatbot#history'
+
+  get 'chatbot/stats', to: 'chatbot#stats'
+
+  get 'chatbot/bot', to: 'chatbot#bot'
+
+  post 'chatbot', to: 'chatbot#query'
 
   match "/404", :to => "errors#not_found", :via => :all
 
