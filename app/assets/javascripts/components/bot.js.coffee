@@ -1,9 +1,18 @@
 React = require 'react'
 
 @Bot = React.createClass
+  getInitialState: ->
+    dark: no
+
+  toggleDark: -> @setState dark: !@state.dark
+
   render: ->
     {div, input} = React.DOM
-    div className: 'bot-chat-outer',
+    div className: "bot-chat-outer #{'dark-theme' unless !@state.dark}",
+      div
+        className: 'toggle-theme'
+        onClick: @toggleDark
+        'Dark Theme'
       div className: 'horizontal-center',
         div className: 'chat-container',
           div className: 'conversation',
@@ -53,6 +62,7 @@ React = require 'react'
             input
               type: 'text'
               placeholder: 'Ask Botler...'
+
 module.exports = @Bot
 
 # getInitialState: ->

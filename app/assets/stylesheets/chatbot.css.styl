@@ -114,7 +114,31 @@ pastel-blue-4 = #b5cae3
 .bot-chat-outer
   width 100%
   position absolute
+  background-color white
+  color black
   height "calc(100% - %s)" % nav-height
+  &.dark-theme
+    filter invert(100%)
+    -webkit-filter invert(100%)
+
+  .toggle-theme
+    position absolute
+    top 0
+    right 0
+    margin space-x-small
+    width space*5
+    line-height nav-height
+    text-align center
+    height nav-height
+    font-size accent-font
+    background-color black
+    color white
+    transition background-color .3s ease-in-out
+    z-index 1
+    cursor pointer
+    border-radius space*2
+    &:hover
+      background-color dark-gray
 
   .horizontal-center
     position absolute
