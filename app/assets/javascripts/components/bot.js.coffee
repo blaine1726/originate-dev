@@ -6,9 +6,19 @@ React = require 'react'
 
   toggleDark: -> @setState dark: !@state.dark
 
+  componentDidMount: ->
+    loading = document.getElementById 'loading-cover'
+    tl = new TimelineMax()
+    tl.add('start')
+    tl.to(loading, .3, {top: '100%', borderRadius: '70%', delay: .3}, 'start+.3')
+    tl.timeScale(1)
+
   render: ->
     {div, input} = React.DOM
     div className: "bot-chat-outer #{'dark-theme' unless !@state.dark}",
+      div
+        className: 'loading-cover'
+        id: 'loading-cover'
       div
         className: 'toggle-theme'
         onClick: @toggleDark
