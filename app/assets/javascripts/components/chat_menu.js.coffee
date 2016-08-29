@@ -1,9 +1,13 @@
 React = require 'react'
 
 @ChatMenu = React.createClass
+  componentDidMount: ->
+
+
   render: ->
     {div, img, a} = React.DOM
-    div className: 'chat-menu',
+    div
+      id: 'chat-menu'
       a
         className: 'chat-btn 1'
         href: '../chatbot'

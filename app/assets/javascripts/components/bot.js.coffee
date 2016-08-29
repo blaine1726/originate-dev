@@ -6,25 +6,52 @@ React = require 'react'
 
   toggleDark: -> @setState dark: !@state.dark
 
+  componentWillUnmount: ->
+    $('#horizontal-center').css('visibility', 'hidden')
+
   componentDidMount: ->
-    loading = document.getElementById 'loading-cover'
+    # $('#horizontal-center').css('opacity', '0');
+    chat = document.getElementById 'horizontal-center'
+    message = document.getElementById 'message'
     tl = new TimelineMax()
     tl.add('start')
-    tl.to(loading, .3, {top: '100%', borderRadius: '70%', delay: .3}, 'start+.3')
+    tl.fromTo('#loading', .4, {scale: 1}, {scale: 2}, ease:Expo.easeInOut, 'start')
+      .fromTo('#loading2', .3, {scale: .8}, {scale: 1.75}, ease:Expo.easeInOut, 'start')
+      .to('#loading', .3, {scale: 1, opacity: 0}, 'start+.1')
+      .to('#loading2', .4, {scale: .6, opacity: 0}, 'start+.1')
+      .to(chat, .5, {top: 0, opacity: 1}, 'start+.2')
+      .staggerTo('.message', .3, {transform: "translateY(0)", opacity: 1}, .1, 'start+.2')
     tl.timeScale(1)
+    # loading = document.getElementById 'loading-cover'
+    # tl = new TimelineMax()
+    # tl.add('start')
+    # tl.to(loading, .3, {bottom: '110%', borderRadius: '70%', delay: .3}, 'start+.3')
+    # tl.timeScale(1)
 
   render: ->
-    {div, input} = React.DOM
+    {div, input, img} = React.DOM
     div className: "bot-chat-outer #{'dark-theme' unless !@state.dark}",
+      # div
+      #   className: 'loading-cover'
+      #   id: 'loading-cover'
+      # div
+      #   className: 'toggle-theme'
+      #   onClick: @toggleDark
+      #   'Dark Theme'
       div
-        className: 'loading-cover'
-        id: 'loading-cover'
+        id: 'loading'
       div
-        className: 'toggle-theme'
-        onClick: @toggleDark
-        'Dark Theme'
-      div className: 'horizontal-center',
+        id: 'loading2'
+      div
+        id: 'horizontal-center',
         div className: 'chat-container',
+          div className: 'chat-header',
+            div className: 'chat-time', 'Today'
+            div className: 'header-left', 'The Botler'
+            div className: 'header-right',
+              img
+                src: @props.profile
+                alt: 'Username'
           div className: 'conversation',
             React.createElement BotMessage,
               text: 'Welcome to Chat Botler, nice to meet you!'
@@ -71,7 +98,7 @@ React = require 'react'
           div className: 'input',
             input
               type: 'text'
-              placeholder: 'Ask Botler...'
+              placeholder: 'Type your message here'
 
 module.exports = @Bot
 

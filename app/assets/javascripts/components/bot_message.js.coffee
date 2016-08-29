@@ -7,7 +7,9 @@ React = require 'react'
       img
         src: @props.pic
         alt: 'Botler'
-      div className: 'message',
+      div
+        className: 'message'
+        id: 'message'
         div className: 'heading',
           h3 {}, 'Botler'
           span {}, '10:33pm'
