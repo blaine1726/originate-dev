@@ -221,89 +221,6 @@ body
         .header-left
           float left
 
-      .conversation
-        position relative
-        width 100%
-        height "calc(100% - (%s * 2))" % nav-height
-        overflow-y auto
-        padding 0 space*2
-        box-sizing border-box
-
-        .bot-message, .user-message
-          position relative
-          width 100%
-          padding space
-
-          img
-            width profile-size
-            height profile-size
-            border-radius space*1.5
-
-        .bot-message, .user-message
-          float left
-          width space*30
-
-          img
-            float left
-
-          .message
-            float left
-            margin-left space
-            max-width space*26
-            box-sizing border-box
-            background-color very-light-gray
-            min-height space*3
-            border-radius 0px 10px 10px 10px
-            padding space-x-small
-            transform translateY(20px)
-            opacity 0
-
-            .heading
-              width 100%
-              vertical-align bottom
-
-              h3
-                font-size header-font
-                float left
-                margin 0
-
-              span
-                font-size accent-font
-                float left
-                color medium-gray
-                padding 0
-                margin 0 space-x-small
-
-            p
-              font-size message-font
-              margin-top space*1.5
-              width 100%
-              overflow auto
-              white-space normal
-
-        .user-message
-          float right
-
-          img
-            float right
-
-          .message
-            float right
-            margin-left 0
-            margin-right space
-            background-color bright-blue
-            border-radius 10px 0px 10px 10px
-
-            .heading
-              h3, span
-                float right
-
-              span
-                color white
-
-            p
-              text-align right
-
       .input
         position relative
         width 100%
@@ -322,8 +239,92 @@ body
           &:active, &:focus
             padding-left space
 
+.conversation
+  position relative
+  width 100%
+  height "calc(100% - (%s * 2))" % nav-height
+  overflow-y auto
+  padding 0 space*2
+  box-sizing border-box
+
+  .bot-message, .user-message
+    position relative
+    width 100%
+    padding space
+
+    img
+      width profile-size
+      height profile-size
+      border-radius space*1.5
+
+  .bot-message, .user-message
+    float left
+    width space*30
+
+    img
+      float left
+
+    .message
+      float left
+      margin-left space
+      max-width space*26
+      box-sizing border-box
+      background-color very-light-gray
+      min-height space*3
+      border-radius 0px 10px 10px 10px
+      padding space-x-small
+      transform translateY(20px)
+      opacity 0
+
+      .heading
+        width 100%
+        vertical-align bottom
+
+        h3
+          font-size header-font
+          float left
+          margin 0
+
+        span
+          font-size accent-font
+          float left
+          color medium-gray
+          padding 0
+          margin 0 space-x-small
+
+      p
+        font-size message-font
+        margin-top space*1.5
+        width 100%
+        overflow auto
+        white-space normal
+
+  .user-message
+    float right
+
+    img
+      float right
+
+    .message
+      float right
+      margin-left 0
+      margin-right space
+      background-color bright-blue
+      border-radius 10px 0px 10px 10px
+
+      .heading
+        h3, span
+          float right
+
+        span
+          color white
+
+      p
+        text-align right
+
 .bot-log-outer
   .show-log
+    opacity 0
     position fixed
     width 100vw
     height 100vh
@@ -351,10 +352,17 @@ body
       background-color white
       box-shadow 0px 0px 4px 0px rgba(166,166,166,1)
 
+      .conversation
+        width 100%
+        height "calc(100% - %s)" % nav-height
+
       .header
         width 100%
-        line-height nav-height
         height nav-height
+        padding 0
+        margin 0
+        vertical-align middle
+        padding space
         box-sizing border-box
         border-bottom 1px solid light-gray
 
@@ -364,6 +372,8 @@ body
         .close
           float right
           font-size accent-font
+          padding-top nudge
+          cursor pointer
 
   #horizontal-center
     width 100%
