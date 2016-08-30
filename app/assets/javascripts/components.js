@@ -20,6 +20,7 @@ window.Header = require('./components/header');
 window.Home = require('./components/home');
 window.Home2 = require('./components/home2');
 window.Logo = require('./components/logo');
+window.LogTile = require('./components/log_tile');
 window.NavTile = require('./components/nav_tile');
 window.PeopleTile = require('./components/people_tile');
 window.People = require('./components/people');

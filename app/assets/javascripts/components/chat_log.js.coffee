@@ -12,17 +12,34 @@ React = require 'react'
       .to('#loading', .3, {scale: 1, opacity: 0}, 'start+.1')
       .to('#loading2', .4, {scale: .6, opacity: 0}, 'start+.1')
       .to(chat, .5, {top: 0, opacity: 1}, 'start+.2')
-      .staggerTo('.message', .3, {transform: "translateY(0)", opacity: 1}, .1, 'start+.2')
+      .staggerTo('.log-tile', .2, {transform: "translateY(0)", opacity: 1}, .1, 'start+.2')
     tl.timeScale(1)
 
   render: ->
-    {div} = React.DOM
-    div className: "bot-chat-outer",
+    {div, a, h3} = React.DOM
+    div className: "bot-log-outer",
+      # div className: 'show-log',
+      #   div className: 'log-mask', ''
+      #   div className: 'show-log-container',
+      #     div className: 'header',
+      #       h3 {}, 'Chat Details for June 18, 2016'
+      #       div
+      #         className: 'close'
+      #         'Close'
       div
         id: 'loading'
       div
         id: 'loading2'
       div
-        id: 'horizontal-center', 'Blah'
+        id: 'horizontal-center',
+        div className: 'log-container',
+          React.createElement LogTile, profile: @props.profile
+          React.createElement LogTile, profile: @props.profile
+          React.createElement LogTile, profile: @props.profile
+          React.createElement LogTile, profile: @props.profile
+          React.createElement LogTile, profile: @props.profile
+          React.createElement LogTile, profile: @props.profile
+          React.createElement LogTile, profile: @props.profile
+          React.createElement LogTile, profile: @props.profile
 
 module.exports = @ChatLog
